@@ -1,11 +1,12 @@
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
+call pathogen#helptags()
 
 scriptencoding utf-8
 
   " These two enable syntax highlighting
   set nocompatible          " We're running Vim, not Vi!
   syntax on                 " Enable syntax highlighting
-
 
   " Change <Leader>
   let mapleader = ","
