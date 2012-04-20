@@ -2,6 +2,9 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
+colorscheme solarized
+set background=dark
+
 scriptencoding utf-8
 
   " These two enable syntax highlighting
