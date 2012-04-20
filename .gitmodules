@@ -13,3 +13,24 @@
 [submodule "home/.vim/bundles/vim-endwise"]
 	path = home/.vim/bundles/vim-endwise
 	url = git://github.com/tpope/vim-endwise.git
+[submodule "home/.vim/bundles/vim-coffee-script"]
+	path = home/.vim/bundles/vim-coffee-script
+	url = git://github.com/kchmck/vim-coffee-script.git
+[submodule "home/.vim/bundles/vim-solarized"]
+	path = home/.vim/bundles/vim-solarized
+	url = git://github.com/skwp/vim-colors-solarized
+[submodule "home/.vim/bundles/vim-extradite"]
+	path = home/.vim/bundles/vim-extradite
+	url = git://github.com/int3/vim-extradite
+[submodule "home/.vim/bundles/vim-nerdtree"]
+	path = home/.vim/bundles/vim-nerdtree
+	url = git://github.com/scrooloose/nerdtree.git
+[submodule "home/.vim/bundles/vim-snipmate"]
+	path = home/.vim/bundles/vim-snipmate
+	url = git://github.com/mikefarmer/snipmate.vim.git
+[submodule "home/.vim/snippets"]
+	path = home/.vim/snippets
+	url = git@github.com:solidline/snipmate-snippets.git
+[submodule "home/.vim/bundles/vim-unimpared"]
+	path = home/.vim/bundles/vim-unimpared
+	url = git://github.com/tpope/vim-unimpaired
