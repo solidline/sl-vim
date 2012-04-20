@@ -37,3 +37,6 @@
 [submodule "home/.vim/bundle/vim-neocompletecache"]
 	path = home/.vim/bundle/vim-neocompletecache
 	url = git://github.com/Shougo/neocomplcache.git
+[submodule "home/.vim/bundle/vim-indent-object"]
+	path = home/.vim/bundle/vim-indent-object
+	url = git://github.com/austintaylor/vim-indentobject.git
