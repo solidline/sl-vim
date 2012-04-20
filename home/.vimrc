@@ -24,6 +24,9 @@ set background=dark
   let NERDTreeMapActivateNode='<CR>'
   let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf']
 
+  " close nerdtree if its the last buffer open.
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
 scriptencoding utf-8
 
   " These two enable syntax highlighting
