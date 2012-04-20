@@ -46,3 +46,9 @@
 [submodule "home/.vim/bundle/vim-fugitive"]
 	path = home/.vim/bundle/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
+[submodule "home/.vim/bundle/vim-command-t"]
+	path = home/.vim/bundle/vim-command-t
+	url = git://git.wincent.com/command-t.git
+[submodule "home/.vim/bundle/vim-syntastic"]
+	path = home/.vim/bundle/vim-syntastic
+	url = git://github.com/scrooloose/syntastic.git
