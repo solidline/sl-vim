@@ -43,6 +43,6 @@
 [submodule "home/.vim/bundle/vim-nerdtree-tabs"]
 	path = home/.vim/bundle/vim-nerdtree-tabs
 	url = git://github.com/jistr/vim-nerdtree-tabs.git
-[submodule "home/.vim/bundle/-vim-fugitive"]
-	path = home/.vim/bundle/-vim-fugitive
+[submodule "home/.vim/bundle/vim-fugitive"]
+	path = home/.vim/bundle/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
