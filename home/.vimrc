@@ -2,8 +2,27 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
+
 colorscheme solarized
 set background=dark
+
+" save buffer to the mac clipboard
+  set clipboard=unnamed
+
+
+" NERDTree - Make nerdtree look nice
+  let NERDTreeMinimalUI = 1
+  let NERDTreeDirArrows = 1
+  let g:NERDTreeWinSize = 30
+
+  let NERDTreeQuitOnOpen=1
+  " colored NERD Tree
+  let NERDChristmasTree = 1
+  let NERDTreeHighlightCursorline = 1
+  let NERDTreeShowHidden = 1
+  " map enter to activating a node
+  let NERDTreeMapActivateNode='<CR>'
+  let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf']
 
 scriptencoding utf-8
 
