@@ -52,3 +52,6 @@
 [submodule "home/.vim/bundle/vim-syntastic"]
 	path = home/.vim/bundle/vim-syntastic
 	url = git://github.com/scrooloose/syntastic.git
+[submodule "home/.vim/bundle/vim-less"]
+	path = home/.vim/bundle/vim-less
+	url = git://github.com/groenewege/vim-less.git
