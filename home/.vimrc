@@ -2,7 +2,6 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
-
 colorscheme solarized
 set background=dark
 
@@ -26,6 +25,31 @@ set background=dark
 
   " close nerdtree if its the last buffer open.
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+  " Open the project tree and expose current file in the nerdtree with Ctrl-\
+  nnoremap <silent> <C-\> :NERDTreeFind<CR>
+
+
+" command-t
+:set wildignore+=*.o,*.obj,.git,target,*.class
+
+" Type ,hl to toggle highlighting on/off, and show current value.
+noremap ,hl :set hlsearch! hlsearch?<CR>
+
+" Apple-* Highlight all occurrences of current word (like '*' but without moving)
+" http://vim.wikia.com/wiki/Highlight_all_search_pattern_matches
+nnoremap <D-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+
+" keybindings
+  " Press i to enter insert mode, and ii to exit.
+  :imap ii <Esc>
+
+
+
+" no swap file
+  set noswapfile
+  set nobackup
+  set nowb
 
 scriptencoding utf-8
 
@@ -70,6 +94,9 @@ scriptencoding utf-8
   set foldenable
   set foldmethod=syntax
   set foldlevel=999 " make it really high, so they're not displayed by default
+
+  " highlight search
+  set hlsearch
 
 
   " quit NERDTree after openning a file
@@ -146,3 +173,20 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
 nmap ,w :StripTrailingWhitespaces<CR>
+
+
+
+" Use Q to intelligently close a window 
+" (if there are multiple windows into the same buffer)
+" or kill the buffer entirely if it's the last window looking into that buffer
+function! CloseWindowOrKillBuffer()
+  let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+
+  if number_of_windows_to_this_buffer > 1
+    wincmd c
+  else
+    bdelete
+  endif
+endfunction
+
+nnoremap <silent> Q :call CloseWindowOrKillBuffer()<CR>
