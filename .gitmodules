@@ -34,3 +34,6 @@
 [submodule "home/.vim/bundle/vim-unimpared"]
 	path = home/.vim/bundle/vim-unimpared
 	url = git://github.com/tpope/vim-unimpaired
+[submodule "home/.vim/bundle/vim-neocompletecache"]
+	path = home/.vim/bundle/vim-neocompletecache
+	url = git://github.com/Shougo/neocomplcache.git
