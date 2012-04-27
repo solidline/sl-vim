@@ -31,7 +31,7 @@ set background=dark
 
 
 " command-t
-:set wildignore+=*.o,*.obj,.git,target,*.class
+:set wildignore+=*.o,*.obj,.git,target,*.class,*.png,*.jpg
 
 " Type ,hl to toggle highlighting on/off, and show current value.
 noremap ,hl :set hlsearch! hlsearch?<CR>
@@ -117,6 +117,7 @@ scriptencoding utf-8
     autocmd FileType ruby,eruby,yaml set autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab
     autocmd FileType python set autoindent shiftwidth=4 softtabstop=4 expandtab
     autocmd FileType javascript,html,htmldjango,css set autoindent shiftwidth=2 softtabstop=2 expandtab
+    autocmd FileType java,xml set autoindent shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType vim set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType cucumber set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
@@ -190,3 +191,11 @@ function! CloseWindowOrKillBuffer()
 endfunction
 
 nnoremap <silent> Q :call CloseWindowOrKillBuffer()<CR>
+
+
+" indent xml code
+augroup xml
+    map ,mf !xmllint --format --recover - 2>/dev/null<CR>
+"    au!
+"    autocmd BufWrite *xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
+augroup END
