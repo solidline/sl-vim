@@ -61,3 +61,9 @@
 [submodule "home/.vim/bundle/vim-commentary"]
 	path = home/.vim/bundle/vim-commentary
 	url = git://github.com/tpope/vim-commentary.git
+[submodule "home/.vim/bundle/vim-ragtag"]
+	path = home/.vim/bundle/vim-ragtag
+	url = git://github.com/tpope/vim-ragtag.git
+[submodule "home/.vim/bundle/vim-vimux"]
+	path = home/.vim/bundle/vim-vimux
+	url = git://github.com/benmills/vimux.git

@@ -41,8 +41,8 @@ noremap ,hl :set hlsearch! hlsearch?<CR>
 nnoremap <D-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
 " keybindings
-  " Press i to enter insert mode, and ii to exit.
-  :imap ii <Esc>
+  " Press i to enter insert mode, and kj to exit.
+  :inoremap kj <Esc>
 
 
 
@@ -199,3 +199,40 @@ augroup xml
 "    au!
 "    autocmd BufWrite *xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 augroup END
+
+set wildmenu
+set wildmode=full
+
+" better buffer management
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
+
+" expand the current buffer path
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+" vimux
+" Run the current file with rspec
+map <Leader>rb :call RunVimTmuxCommand("clear; ruby " . bufname("%"))<CR>
+
+" Run command without sending sending a return
+map <Leader>rq :call RunVimTmuxCommand("clear; ruby " . bufname("%"), 0)<CR>
+
+" Prompt for a command to run
+map <Leader>rp :PromptVimTmuxCommand<CR>
+
+" Run last command executed by RunVimTmuxCommand
+map <Leader>rl :RunLastVimTmuxCommand<CR>
+
+" Move into the tmux runner pane created by RunVimTmuxCommand and enter copy mode (scroll mode).
+" Inspect runner pane
+map <Leader>ri :InspectVimTmuxRunner<CR>
+
+" Close all other tmux panes in current window
+map <Leader>rx :CloseVimTmuxPanes<CR>
+
+" Interrupt any command running in the runner pane
+map <Leader>rs :InterruptVimTmuxRunner<CR>
+
+
