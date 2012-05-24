@@ -5,9 +5,10 @@ call pathogen#helptags()
 colorscheme solarized
 set background=dark
 
+set hidden
+
 " save buffer to the mac clipboard
   set clipboard=unnamed
-
 
 " NERDTree - Make nerdtree look nice
   let NERDTreeMinimalUI = 1
@@ -29,6 +30,8 @@ set background=dark
   " Open the project tree and expose current file in the nerdtree with Ctrl-\
   nnoremap <silent> <C-\> :NERDTreeFind<CR>
 
+  map ,s :Gstatus<CR>
+  map ,e :w<CR>
 
 " command-t
 :set wildignore+=*.o,*.obj,.git,target,*.class,*.png,*.jpg
@@ -109,6 +112,7 @@ scriptencoding utf-8
   let NERDTreeMapActivateNode='<CR>'
   let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf', '.beam']
 
+  set autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab " set the default
 
   augroup myfiletypes
     " Clear old autocmds in group
@@ -192,7 +196,6 @@ endfunction
 
 nnoremap <silent> Q :call CloseWindowOrKillBuffer()<CR>
 
-
 " indent xml code
 augroup xml
     map ,mf !xmllint --format --recover - 2>/dev/null<CR>
@@ -236,3 +239,21 @@ map <Leader>rx :CloseVimTmuxPanes<CR>
 map <Leader>rs :InterruptVimTmuxRunner<CR>
 
 
+"When typing a string, your quotes auto complete. Move past the quote
+"while still in insert mode by hitting Ctrl-a. Example:
+" type 'foo<c-a>
+imap <C-a> <esc>wa
+
+" When using delimitMate typing "{" produces "{}" this breaks the brackets out
+imap ,a <return><esc>O<tab>
+
+" eclim
+
+"  Search for the javadocs of the element under the cursor with <leader>d.
+nnoremap <silent> <buffer> ,d :JavaDocSearch -x declarations<cr>
+
+" Import the class under the cursor with <leader>i.
+nnoremap <silent> <buffer> ,i :JavaImport<cr>
+
+" Perform a context sensitive search of the element under the cursor with <enter>.
+nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>

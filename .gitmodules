@@ -67,3 +67,18 @@
 [submodule "home/.vim/bundle/vim-vimux"]
 	path = home/.vim/bundle/vim-vimux
 	url = git://github.com/benmills/vimux.git
+[submodule "home/.vim/bundle/vim-visual-start-search"]
+	path = home/.vim/bundle/vim-visual-start-search
+	url = https://github.com/nelstrom/vim-visual-star-search.git
+[submodule "home/.vim/bundle/vim-qargs"]
+	path = home/.vim/bundle/vim-qargs
+	url = https://github.com/nelstrom/vim-qargs
+[submodule "home/.vim/bundle/vim-delimit-mate"]
+	path = home/.vim/bundle/vim-delimit-mate
+	url = https://github.com/Raimondi/delimitMate.git
+[submodule "home/.vim/bundle/vim-taglist-plus"]
+	path = home/.vim/bundle/vim-taglist-plus
+	url = https://github.com/int3/vim-taglist-plus
+[submodule "home/.vim/bundle/vim-ack"]
+	path = home/.vim/bundle/vim-ack
+	url = https://github.com/mileszs/ack.vim.git
