@@ -15,14 +15,16 @@ set hidden
   let NERDTreeDirArrows = 1
   let g:NERDTreeWinSize = 30
 
+  " quit NERDTree after openning a file
   let NERDTreeQuitOnOpen=1
+
   " colored NERD Tree
   let NERDChristmasTree = 1
   let NERDTreeHighlightCursorline = 1
   let NERDTreeShowHidden = 1
   " map enter to activating a node
   let NERDTreeMapActivateNode='<CR>'
-  let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf']
+  let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf','.classpath','.project','.settings']
 
   " close nerdtree if its the last buffer open.
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -100,17 +102,6 @@ scriptencoding utf-8
 
   " highlight search
   set hlsearch
-
-
-  " quit NERDTree after openning a file
-  let NERDTreeQuitOnOpen=1
-  " colored NERD Tree
-  let NERDChristmasTree = 1
-  let NERDTreeHighlightCursorline = 1
-  let NERDTreeShowHidden = 1
-  " map enter to activating a node
-  let NERDTreeMapActivateNode='<CR>'
-  let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf', '.beam']
 
   set autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab " set the default
 
@@ -257,3 +248,18 @@ nnoremap <silent> <buffer> ,i :JavaImport<cr>
 
 " Perform a context sensitive search of the element under the cursor with <enter>.
 nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
+
+
+filetype plugin indent on
+
+
+nnoremap ,c :!/usr/local/bin/ctags -R<cr>
+
+" Inable matchit plugin to use % to jump between other tags, html, ruby, etc.
+set nocompatible
+runtime macros/matchit.vim
+
+" maven refresh
+map ,r :ProjectClose caui<cr>:!mvn clean<cr>:!mvn elipse:clean<cr>:!mvn eclipse:eclipse<cr>:ProjectOpen caui<cr>:ProjectRefresh caui<cr>
+
+nnoremap <F3> :NumbersToggle<CR>

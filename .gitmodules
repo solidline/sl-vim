@@ -82,3 +82,6 @@
 [submodule "home/.vim/bundle/vim-ack"]
 	path = home/.vim/bundle/vim-ack
 	url = https://github.com/mileszs/ack.vim.git
+[submodule "home/.vim/bundle/vim-tabular"]
+	path = home/.vim/bundle/vim-tabular
+	url = https://github.com/godlygeek/tabular.git
