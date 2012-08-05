@@ -249,6 +249,8 @@ nnoremap <silent> <buffer> ,i :JavaImport<cr>
 " Perform a context sensitive search of the element under the cursor with <enter>.
 nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
 
+" Hide dos linebreaks
+nnoremap <silent> <buffer> ,m :ed ++ff=dos %<cr> 
 
 filetype plugin indent on
 
