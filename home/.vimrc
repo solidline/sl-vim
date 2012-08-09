@@ -265,3 +265,6 @@ runtime macros/matchit.vim
 map ,r :ProjectClose caui<cr>:!mvn clean<cr>:!mvn elipse:clean<cr>:!mvn eclipse:eclipse<cr>:ProjectOpen caui<cr>:ProjectRefresh caui<cr>
 
 nnoremap <F3> :NumbersToggle<CR>
+
+" GUI
+set gfn=Monaco:h14
