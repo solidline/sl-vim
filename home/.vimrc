@@ -2,7 +2,7 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
-colorscheme solarized
+colorscheme Tomorrow-Night
 set background=dark
 
 set hidden
@@ -237,6 +237,9 @@ imap <C-a> <esc>wa
 
 " When using delimitMate typing "{" produces "{}" this breaks the brackets out
 imap ,a <return><esc>O<tab>
+
+" Select text that has just been pasted.
+nnoremap gp `[v`]`
 
 " eclim
 
