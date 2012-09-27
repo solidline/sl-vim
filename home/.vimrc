@@ -49,8 +49,6 @@ nnoremap <D-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
   " Press i to enter insert mode, and kj to exit.
   :inoremap kj <Esc>
 
-
-
 " no swap file
   set noswapfile
   set nobackup
@@ -271,3 +269,8 @@ nnoremap <F3> :NumbersToggle<CR>
 
 " GUI
 set gfn=Monaco:h14
+
+" Specify the types of modes to check for.
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': ['javascript', 'java'],
+                           \ 'passive_filetypes': ['html'] }
