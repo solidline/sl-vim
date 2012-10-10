@@ -97,3 +97,9 @@
 [submodule "home/.vim/bundle/dwm.vim"]
 	path = home/.vim/bundle/dwm.vim
 	url = https://github.com/spolu/dwm.vim.git
+[submodule "home/.vim/bundle/neocomplcache-snippets-complete"]
+	path = home/.vim/bundle/neocomplcache-snippets-complete
+	url = https://github.com/Shougo/neocomplcache-snippets-complete
+[submodule "home/.vim/bundle/snipmate-snippets"]
+	path = home/.vim/bundle/snipmate-snippets
+	url = https://github.com/spf13/snipmate-snippets
