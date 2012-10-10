@@ -25,12 +25,9 @@
 [submodule "home/.vim/bundle/vim-nerdtree"]
 	path = home/.vim/bundle/vim-nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
-[submodule "home/.vim/bundle/vim-snipmate"]
-	path = home/.vim/bundle/vim-snipmate
-	url = git://github.com/mikefarmer/snipmate.vim.git
 [submodule "home/.vim/snippets"]
 	path = home/.vim/snippets
-	url = git@github.com:solidline/snipmate-snippets.git
+	url = https://github.com/spf13/snipmate-snippets
 [submodule "home/.vim/bundle/vim-unimpared"]
 	path = home/.vim/bundle/vim-unimpared
 	url = git://github.com/tpope/vim-unimpaired
@@ -100,3 +97,6 @@
 [submodule "home/.vim/bundle/snipmate-snippets"]
 	path = home/.vim/bundle/snipmate-snippets
 	url = https://github.com/spf13/snipmate-snippets
+[submodule "home/.vim/bundle/snipmate"]
+	path = home/.vim/bundle/snipmate
+	url = https://github.com/msanders/snipmate.vim
