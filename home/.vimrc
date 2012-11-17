@@ -2,13 +2,14 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
-colorscheme Tomorrow-Night
+colorscheme Tomorrow-Night-Eighties
 set background=dark
 
 set hidden
 
-" save buffer to the mac clipboard
-  set clipboard=unnamed
+set clipboard+=unnamed
+" if $TMUX == ''
+" endif
 
 " NERDTree - Make nerdtree look nice
   let NERDTreeMinimalUI = 1
@@ -166,7 +167,9 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
-nmap ,w :StripTrailingWhitespaces<CR>
+nmap ,ws :StripTrailingWhitespaces<CR>
+nmap ,w :wq!<CR>
+nmap ,q :q!<CR>
 
 
 
@@ -317,4 +320,54 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
+set linespace=2
 
+
+" Example:
+"
+"   Before:
+"
+"   UI.Layout = Marionette.Layout.extend({
+"
+"
+"   After:
+"
+"   // UI.Layout
+"   // ---------
+"   
+"   // Hello
+"   UI.Layout = Marionette.Layout.extend({
+
+function CommentJSClass()
+  normal yypki// f=Dxyyplllv$r-0o0Do		// Hello
+endfunction
+
+
+" Javascript create comment
+nnoremap <leader>cj :call CommentJSClass()<CR>
+
+" vimux commands
+ map <Leader>rr :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
+
+ " Prompt for a command to run
+ map <Leader>rp :VimuxPromptCommand<CR>
+ 
+ " Run last command executed by VimuxRunCommand
+ map <Leader>rl :VimuxRunLastCommand<CR>
+ 
+ " Inspect runner pane
+ map <Leader>ri :VimuxInspectRunner<CR>
+ 
+ " Close all other tmux panes in current window
+ map <Leader>rx :VimuxClosePanes<CR>
+ 
+ " Close vim tmux runner opened by VimuxRunCommand
+ map <Leader>rq :VimuxCloseRunner<CR>
+ 
+ " Interrupt any command running in the runner pane
+ map <Leader>rc :VimuxInterruptRunner<CR>
+
+" toggle paste
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
