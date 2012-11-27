@@ -371,3 +371,28 @@ nnoremap <leader>cj :call CommentJSClass()<CR>
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
+
+" eclim settings
+" Eclim settings
+" ,i imports whatever is needed for current line
+nnoremap <silent> <Leader>i :JavaImport<cr>
+" ,d opens javadoc for statement in browser
+nnoremap <silent> <Leader>d :JavaDocSearch -x declarations<cr>
+" ,<enter> searches context for statement
+nnoremap <silent> <Leader><cr> :JavaSearchContext<cr>
+" ,jv validates current java file
+nnoremap <silent> <Leader>jv :Validate<cr>
+" ,jc shows corrections for the current line of java
+nnoremap <silent> <Leader>jc :JavaCorrect<cr>
+
+" ,ju run unit test for current file.
+nnoremap <silent> <Leader>ju :JUnit<cr>
+" 'open' on OSX will open the url in the default browser without issue
+let g:EclimBrowser='open'
+" Disable Eclim's taglisttoo because I use the regular taglist plugin
+"let g:taglisttoo_disabled = 1
+" Disable HTML
+let g:EclimHtmlValidate = 0
+
+let g:EclimValidateSortResults = "errors"
+
