@@ -2,12 +2,12 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
-colorscheme Tomorrow-Night-Eighties
+colorscheme solarized
 set background=dark
 
 set hidden
 
-set clipboard+=unnamed
+set clipboard=unnamed
 " if $TMUX == ''
 " endif
 
@@ -261,7 +261,7 @@ filetype plugin indent on
 
 nnoremap ,c :!/usr/local/bin/ctags -R<cr>
 
-" Inable matchit plugin to use % to jump between other tags, html, ruby, etc.
+" Enable matchit plugin to use % to jump between other tags, html, ruby, etc.
 set nocompatible
 runtime macros/matchit.vim
 
@@ -396,3 +396,29 @@ let g:EclimHtmlValidate = 0
 
 let g:EclimValidateSortResults = "errors"
 
+" tmux will only forward escape sequences to the terminal if surrounded by a DCS sequence
+" http://sourceforge.net/mailarchive/forum.php?thread_name=AANLkTinkbdoZ8eNR1X2UobLTeww1jFrvfJxTMfKSq-L%2B%40mail.gmail.com&forum_name=tmux-users
+ 
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+" This was a life saver:
+" https://wincent.com/blog/tweaking-command-t-and-vim-for-use-in-the-terminal-and-tmux
+if has('mouse')
+  set mouse=a
+  if &term =~ "xterm" || &term =~ "screen"
+    " for some reason, doing this directly with 'set ttymouse=xterm2'
+    " doesn't work -- 'set ttymouse?' returns xterm2 but the mouse
+    " makes tmux enter copy mode instead of selecting or scrolling
+    " inside Vim -- but luckily, setting it up from within autocmds
+    " works                   
+    autocmd VimEnter * set ttymouse=xterm2
+    autocmd FocusGained * set ttymouse=xterm2
+    autocmd BufEnter * set ttymouse=xterm2
+  endif
+endif
