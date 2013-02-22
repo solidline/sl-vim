@@ -3,7 +3,7 @@ call pathogen#infect()
 call pathogen#helptags()
 
 colorscheme solarized
-set background=dark
+set background=light
 
 set hidden
 
@@ -171,7 +171,9 @@ nmap ,ws :StripTrailingWhitespaces<CR>
 nmap ,w :wq!<CR>
 nmap ,q :q!<CR>
 
-
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
 
 " Use Q to intelligently close a window 
 " (if there are multiple windows into the same buffer)
@@ -209,7 +211,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " vimux
 " Run the current file with rspec
-map <Leader>rb :call RunVimTmuxCommand("clear; ruby " . bufname("%"))<CR>
+map <Leader>rb :call RunVimTmuxCommand("clear; rspec " . bufname("%"))<CR>
 
 " Run command without sending sending a return
 map <Leader>rq :call RunVimTmuxCommand("clear; ruby " . bufname("%"), 0)<CR>
