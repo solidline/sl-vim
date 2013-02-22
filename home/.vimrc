@@ -3,7 +3,7 @@ call pathogen#infect()
 call pathogen#helptags()
 
 colorscheme solarized
-set background=light
+set background=dark
 
 set hidden
 
