@@ -24,7 +24,7 @@ set clipboard=unnamed
   let NERDTreeHighlightCursorline = 1
   let NERDTreeShowHidden = 1
   " map enter to activating a node
-  let NERDTreeMapActivateNode=';'
+  let NERDTreeMapActivateNode='<C-j>'
   let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf','.classpath','.project','.settings']
 
   " close nerdtree if its the last buffer open.
