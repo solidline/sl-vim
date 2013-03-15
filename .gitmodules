@@ -112,3 +112,9 @@
 [submodule "home/.vim/bundle/vim-ruby"]
 	path = home/.vim/bundle/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
+[submodule "home/.vim/bundle/vim-gitgutter"]
+	path = home/.vim/bundle/vim-gitgutter
+	url = git://github.com/airblade/vim-gitgutter.git
+[submodule "home/.vim/bundle/vim-log4j"]
+	path = home/.vim/bundle/vim-log4j
+	url = https://github.com/tetsuo13/Vim-log4j.git

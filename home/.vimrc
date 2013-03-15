@@ -2,8 +2,8 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
-colorscheme solarized
-set background=dark
+colorscheme Tomorrow-Night-Eighties
+" set background=dark
 
 set hidden
 
@@ -24,11 +24,11 @@ set clipboard=unnamed
   let NERDTreeHighlightCursorline = 1
   let NERDTreeShowHidden = 1
   " map enter to activating a node
-  let NERDTreeMapActivateNode='<C-j>'
-  let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf','.classpath','.project','.settings']
+  " let NERDTreeMapActivateNode='<C-j>'
+  let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf','.classpath','.project','.settings', '\.svn', '\.gems', '\.rbenv-version']
 
   " close nerdtree if its the last buffer open.
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+  " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
   " Open the project tree and expose current file in the nerdtree with Ctrl-\
   nnoremap <silent> <C-\> :NERDTreeFind<CR>
