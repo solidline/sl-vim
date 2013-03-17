@@ -27,7 +27,7 @@
 	url = git://github.com/scrooloose/nerdtree.git
 [submodule "home/.vim/snippets"]
 	path = home/.vim/snippets
-	url = https://github.com/spf13/snipmate-snippets
+	url = git://github.com/spf13/snipmate-snippets
 [submodule "home/.vim/bundle/vim-unimpared"]
 	path = home/.vim/bundle/vim-unimpared
 	url = git://github.com/tpope/vim-unimpaired
@@ -66,55 +66,55 @@
 	url = git://github.com/benmills/vimux.git
 [submodule "home/.vim/bundle/vim-visual-start-search"]
 	path = home/.vim/bundle/vim-visual-start-search
-	url = https://github.com/nelstrom/vim-visual-star-search.git
+	url = git://github.com/nelstrom/vim-visual-star-search.git
 [submodule "home/.vim/bundle/vim-qargs"]
 	path = home/.vim/bundle/vim-qargs
-	url = https://github.com/nelstrom/vim-qargs
+	url = git://github.com/nelstrom/vim-qargs
 [submodule "home/.vim/bundle/vim-delimit-mate"]
 	path = home/.vim/bundle/vim-delimit-mate
-	url = https://github.com/Raimondi/delimitMate.git
+	url = git://github.com/Raimondi/delimitMate.git
 [submodule "home/.vim/bundle/vim-taglist-plus"]
 	path = home/.vim/bundle/vim-taglist-plus
-	url = https://github.com/int3/vim-taglist-plus
+	url = git://github.com/int3/vim-taglist-plus
 [submodule "home/.vim/bundle/vim-ack"]
 	path = home/.vim/bundle/vim-ack
-	url = https://github.com/mileszs/ack.vim.git
+	url = git://github.com/mileszs/ack.vim.git
 [submodule "home/.vim/bundle/vim-tabular"]
 	path = home/.vim/bundle/vim-tabular
-	url = https://github.com/godlygeek/tabular.git
+	url = git://github.com/godlygeek/tabular.git
 [submodule "home/.vim/bundle/numbers"]
 	path = home/.vim/bundle/numbers
-	url = https://github.com/myusuf3/numbers.vim.git
+	url = git://github.com/myusuf3/numbers.vim.git
 [submodule "home/.vim/bundle/base16-vim"]
 	path = home/.vim/bundle/base16-vim
-	url = https://github.com/chriskempson/base16-vim.git
+	url = git://github.com/chriskempson/base16-vim.git
 [submodule "home/.vim/bundle/switch.vim"]
 	path = home/.vim/bundle/switch.vim
-	url = https://github.com/AndrewRadev/switch.vim.git
+	url = git://github.com/AndrewRadev/switch.vim.git
 [submodule "home/.vim/bundle/dwm.vim"]
 	path = home/.vim/bundle/dwm.vim
-	url = https://github.com/spolu/dwm.vim.git
+	url = git://github.com/spolu/dwm.vim.git
 [submodule "home/.vim/bundle/snipmate-snippets"]
 	path = home/.vim/bundle/snipmate-snippets
-	url = https://github.com/spf13/snipmate-snippets
+	url = git://github.com/spf13/snipmate-snippets
 [submodule "home/.vim/bundle/snipmate"]
 	path = home/.vim/bundle/snipmate
-	url = https://github.com/msanders/snipmate.vim
+	url = git://github.com/msanders/snipmate.vim
 [submodule "home/.vim/bundle/ag.vim"]
 	path = home/.vim/bundle/ag.vim
-	url = https://github.com/epmatsw/ag.vim.git
+	url = git://github.com/epmatsw/ag.vim.git
 [submodule "home/.vim/bundle/vim-fakeclip"]
 	path = home/.vim/bundle/vim-fakeclip
-	url = https://github.com/kana/vim-fakeclip.git
+	url = git://github.com/kana/vim-fakeclip.git
 [submodule "home/.vim/bundle/vim-easymotion"]
 	path = home/.vim/bundle/vim-easymotion
-	url = https://github.com/Lokaltog/vim-easymotion.git
+	url = git://github.com/Lokaltog/vim-easymotion.git
 [submodule "home/.vim/bundle/vim-ruby"]
 	path = home/.vim/bundle/vim-ruby
-	url = https://github.com/vim-ruby/vim-ruby.git
+	url = git://github.com/vim-ruby/vim-ruby.git
 [submodule "home/.vim/bundle/vim-gitgutter"]
 	path = home/.vim/bundle/vim-gitgutter
 	url = git://github.com/airblade/vim-gitgutter.git
 [submodule "home/.vim/bundle/vim-log4j"]
 	path = home/.vim/bundle/vim-log4j
-	url = https://github.com/tetsuo13/Vim-log4j.git
+	url = git://github.com/tetsuo13/Vim-log4j.git
