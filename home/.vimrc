@@ -23,6 +23,8 @@ set clipboard=unnamed
   let NERDChristmasTree = 1
   let NERDTreeHighlightCursorline = 1
   let NERDTreeShowHidden = 1
+  let NERDTreeQuitOnOpen = 1
+  let NERDTreeMouseMode = 3
   " map enter to activating a node
   " let NERDTreeMapActivateNode='<C-j>'
   let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf','.classpath','.project','.settings', '\.svn', '\.gems', '\.rbenv-version']
