@@ -3,8 +3,8 @@ syntax on
 filetype plugin indent on
 
 
-colorscheme Tomorrow
-" set background=dark
+colorscheme solarized
+set background=dark
 
 set hidden
 set clipboard=unnamed
