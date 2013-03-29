@@ -118,3 +118,6 @@
 [submodule "home/.vim/bundle/vim-log4j"]
 	path = home/.vim/bundle/vim-log4j
 	url = https://github.com/tetsuo13/Vim-log4j.git
+[submodule "home/.vim/bundle/vim-nrrwrgn"]
+	path = home/.vim/bundle/vim-nrrwrgn
+	url = https://github.com/chrisbra/NrrwRgn.git
