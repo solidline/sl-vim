@@ -1,42 +1,44 @@
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-call pathogen#helptags()
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
 
-colorscheme Tomorrow-Night-Eighties
+
+colorscheme Tomorrow
 " set background=dark
 
 set hidden
-
 set clipboard=unnamed
-" if $TMUX == ''
-" endif
 
-" NERDTree - Make nerdtree look nice
-  let NERDTreeMinimalUI = 1
-  let NERDTreeDirArrows = 1
-  let g:NERDTreeWinSize = 30
 
-  " quit NERDTree after openning a file
-  let NERDTreeQuitOnOpen=1
+""""""""""
+" NERDTree
+""""""""""
 
-  " colored NERD Tree
-  let NERDChristmasTree = 1
-  let NERDTreeHighlightCursorline = 1
-  let NERDTreeShowHidden = 1
-  let NERDTreeQuitOnOpen = 1
-  let NERDTreeMouseMode = 3
-  " map enter to activating a node
-  " let NERDTreeMapActivateNode='<C-j>'
-  let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf','.classpath','.project','.settings', '\.svn', '\.gems', '\.rbenv-version']
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let g:NERDTreeWinSize = 30
 
-  " close nerdtree if its the last buffer open.
-  " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" quit NERDTree after openning a file
+let NERDTreeQuitOnOpen=1
 
-  " Open the project tree and expose current file in the nerdtree with Ctrl-\
-  nnoremap <silent> <C-\> :NERDTreeFind<CR>
+" colored NERD Tree
+let NERDChristmasTree = 1
+let NERDTreeHighlightCursorline = 1
+let NERDTreeShowHidden = 1
+let NERDTreeQuitOnOpen = 1
+let NERDTreeMouseMode = 3
+" map enter to activating a node
+" let NERDTreeMapActivateNode='<C-j>'
+let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf','.classpath','.project','.settings', '\.svn', '\.gems', '\.rbenv-version']
 
-  map ,s :Gstatus<CR>
-  map ,e :w<CR>
+" close nerdtree if its the last buffer open.
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Open the project tree and expose current file in the nerdtree with Ctrl-\
+nnoremap <silent> <C-\> :NERDTreeFind<CR>
+
+map ,s :Gstatus<CR>
+map ,e :w<CR>
 
 " command-t
 :set wildignore+=*.o,*.obj,.git,target,*.class,*.png,*.jpg
