@@ -61,9 +61,6 @@
 [submodule "home/.vim/bundle/vim-ragtag"]
 	path = home/.vim/bundle/vim-ragtag
 	url = git://github.com/tpope/vim-ragtag.git
-[submodule "home/.vim/bundle/vim-vimux"]
-	path = home/.vim/bundle/vim-vimux
-	url = git://github.com/benmills/vimux.git
 [submodule "home/.vim/bundle/vim-visual-start-search"]
 	path = home/.vim/bundle/vim-visual-start-search
 	url = https://github.com/nelstrom/vim-visual-star-search.git
@@ -121,3 +118,6 @@
 [submodule "home/.vim/bundle/vim-javascript"]
 	path = home/.vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
+[submodule "home/.vim/bundle/vim-linediff"]
+	path = home/.vim/bundle/vim-linediff
+	url = https://github.com/AndrewRadev/linediff.vim.git
