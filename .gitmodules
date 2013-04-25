@@ -31,9 +31,6 @@
 [submodule "home/.vim/bundle/vim-unimpared"]
 	path = home/.vim/bundle/vim-unimpared
 	url = git://github.com/tpope/vim-unimpaired
-[submodule "home/.vim/bundle/vim-neocompletecache"]
-	path = home/.vim/bundle/vim-neocompletecache
-	url = git://github.com/Shougo/neocomplcache.git
 [submodule "home/.vim/bundle/vim-indent-object"]
 	path = home/.vim/bundle/vim-indent-object
 	url = git://github.com/austintaylor/vim-indentobject.git
@@ -118,3 +115,12 @@
 [submodule "home/.vim/bundle/vim-linediff"]
 	path = home/.vim/bundle/vim-linediff
 	url = https://github.com/AndrewRadev/linediff.vim.git
+[submodule "home/.vim/bundle/vim-tagbar"]
+	path = home/.vim/bundle/vim-tagbar
+	url = https://github.com/majutsushi/tagbar.git
+[submodule "home/.vim/bundle/vim-distraction-free"]
+	path = home/.vim/bundle/vim-distraction-free
+	url = https://github.com/laktek/distraction-free-writing-vim.git
+[submodule "home/.vim/bundle/vim-instant-markdown"]
+	path = home/.vim/bundle/vim-instant-markdown
+	url = https://github.com/suan/vim-instant-markdown.git
