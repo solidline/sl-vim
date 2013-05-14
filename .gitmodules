@@ -45,7 +45,7 @@
 	url = git://git.wincent.com/command-t.git
 [submodule "home/.vim/bundle/vim-syntastic"]
 	path = home/.vim/bundle/vim-syntastic
-	url = git://github.com/scrooloose/syntastic.git
+	url = https://github.com/scrooloose/syntastic.git
 [submodule "home/.vim/bundle/vim-less"]
 	path = home/.vim/bundle/vim-less
 	url = git://github.com/groenewege/vim-less.git
@@ -127,3 +127,6 @@
 [submodule "home/.vim/bundle/vim-you-complete-me"]
 	path = home/.vim/bundle/vim-you-complete-me
 	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "home/.vim/bundle/vim-abolish"]
+	path = home/.vim/bundle/vim-abolish
+	url = https://github.com/tpope/vim-abolish.git

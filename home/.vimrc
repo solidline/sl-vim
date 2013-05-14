@@ -2,14 +2,11 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
-
 colorscheme Tomorrow
-
 set background=dark
 
 set hidden
 set clipboard=unnamed
-
 
 """"""""""
 " NERDTree
@@ -245,6 +242,12 @@ nnoremap <silent> <buffer> ,d :JavaDocSearch -x declarations<cr>
 " Import the class under the cursor with <leader>i.
 nnoremap <silent> <buffer> ,i :JavaImport<cr>
 
+
+" Run the current unit test
+nnoremap <silent> <buffer> ,rt :JUnit<cr>
+" Find a unit test for the current class.
+nnoremap <silent> <buffer> ,ft :JUnitFindTest<cr>
+
 " Perform a context sensitive search of the element under the cursor with <enter>.
 nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
 
@@ -382,3 +385,10 @@ let g:tagbar_type_javascript = {
     \ 'ctagsbin' : '/usr/local/bin/jsctags'
 \ }
 
+let g:EclimCompletionMethod = 'omnifunc'
+
+" Highlight log4j files.
+autocmd BufRead,BufNewFile *.log set syntax=log4j
+
+" When selecting a word with * don't jump to the next occurrence 
+nnoremap * *``
