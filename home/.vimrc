@@ -2,7 +2,9 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
-colorscheme Tomorrow
+" colorscheme base16-default
+
+colorscheme base16-default
 set background=dark
 
 set hidden
@@ -27,7 +29,7 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeMouseMode = 3
 " map enter to activating a node
 " let NERDTreeMapActivateNode='<C-j>'
-let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf','.classpath','.project','.settings', '\.svn', '\.gems', '\.rbenv-version']
+let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf','.classpath','.project','.settings', '\.svn', '\.gems', '\.rbenv-version', 'tags', '.target']
 
 " close nerdtree if its the last buffer open.
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -50,12 +52,21 @@ nnoremap <D-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
 " keybindings
   " Press i to enter insert mode, and kj to exit.
+  :inoremap jk <Esc>
   :inoremap kj <Esc>
+
+  " Disable paste mode when leaving insert
+   au InsertLeave * set nopaste
 
 " no swap file
   set noswapfile
   set nobackup
   set nowb
+
+" Copy current file or directory
+  nnoremap <silent> <Leader>cf :let @* = expand("%:p")<CR>
+  nnoremap <silent> <Leader>cn :let @* = expand("%:t")<CR>
+  map <Leader>ef :echo expand("%:p")<CR>
 
 scriptencoding utf-8
 
@@ -113,11 +124,13 @@ scriptencoding utf-8
     autocmd FileType ruby,eruby,yaml set autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab
     autocmd FileType python set autoindent shiftwidth=4 softtabstop=4 expandtab
     autocmd FileType javascript,html,htmldjango,css set autoindent shiftwidth=2 softtabstop=2 expandtab
-    autocmd FileType java,xml set autoindent shiftwidth=2 softtabstop=2 expandtab
+    autocmd FileType java,xml set autoindent shiftwidth=4 softtabstop=4 expandtab
     autocmd FileType vim set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType cucumber set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
     au BufRead,BufNewFile *etc/nginx/* set ft=nginx 
+    au BufRead,BufNewFile *.sbt set ft=scala 
+
     " treat rackup files like ruby
     au BufRead,BufNewFile *.ru set ft=ruby
     au BufRead,BufNewFile Gemfile set ft=ruby
@@ -127,6 +140,10 @@ scriptencoding utf-8
     au BufRead,BufNewFile Thorfile set ft=ruby                                   
     au BufRead,BufNewFile *.god set ft=ruby  
     au BufRead,BufNewFile .caprc set ft=ruby  
+    au BufRead,BufNewFile .mustache set ft=html  
+
+    " tm
+    au BufRead,BufNewFile software.conf set ft=sh  
   augroup END
 
 
@@ -187,6 +204,9 @@ augroup xml
 "    autocmd BufWrite *xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 augroup END
 
+" format json
+map <Leader>j !python -m json.tool<CR>
+
 set wildmenu
 set wildmode=full
 
@@ -222,6 +242,11 @@ map <Leader>rx :CloseVimTmuxPanes<CR>
 " Interrupt any command running in the runner pane
 map <Leader>rs :InterruptVimTmuxRunner<CR>
 
+map <Leader>t4 :set tabstop=4 softtabstop=4 shiftwidth=4 expandtab<CR>
+
+" Themes
+map <Leader>d :set background=dark<CR>
+map <Leader>l :set background=light<CR>
 
 "When typing a string, your quotes auto complete. Move past the quote
 "while still in insert mode by hitting Ctrl-a. Example:
@@ -232,16 +257,19 @@ imap <C-a> <esc>wa
 imap ,a <return><esc>O<tab>
 
 " Select text that has just been pasted.
-nnoremap gp `[v`]`
+nnoremap gp `[v`]
 
 " eclim
 
 "  Search for the javadocs of the element under the cursor with <leader>d.
-nnoremap <silent> <buffer> ,d :JavaDocSearch -x declarations<cr>
+nnoremap <silent> <buffer> ,jd :JavaDocSearch -x declarations<cr>
 
 " Import the class under the cursor with <leader>i.
-nnoremap <silent> <buffer> ,i :JavaImport<cr>
+nnoremap <silent> <buffer> ,ji :JavaImport<cr>
 
+map ,gs :Gdiff<CR>
+map ,gw :Gwrite<CR>
+map ,bo :BufOnly<CR>
 
 " Run the current unit test
 nnoremap <silent> <buffer> ,rt :JUnit<cr>
@@ -257,7 +285,7 @@ nnoremap <silent> <buffer> ,m :ed ++ff=dos %<cr>
 filetype plugin indent on
 
 
-nnoremap ,c :!/usr/local/bin/ctags -R<cr>
+nnoremap <Leader>ct :!/usr/local/bin/ctags -R<cr>
 
 " Enable matchit plugin to use % to jump between other tags, html, ruby, etc.
 set nocompatible
@@ -332,15 +360,21 @@ set showmode
 " eclim settings
 " Eclim settings
 " ,i imports whatever is needed for current line
-nnoremap <silent> <Leader>i :JavaImport<cr>
+nnoremap <silent> <Leader>ji :JavaImport<cr>
 " ,d opens javadoc for statement in browser
-nnoremap <silent> <Leader>d :JavaDocSearch -x declarations<cr>
+" nnoremap <silent> <Leader>d :JavaDocSearch -x declarations<cr>
 " ,<enter> searches context for statement
 nnoremap <silent> <Leader><cr> :JavaSearchContext<cr>
 " ,jv validates current java file
 nnoremap <silent> <Leader>jv :Validate<cr>
 " ,jc shows corrections for the current line of java
 nnoremap <silent> <Leader>jc :JavaCorrect<cr>
+
+" ,jg java getter and setter.
+nnoremap <silent> <Leader>jg :JavaGetSet<cr>
+
+nnoremap <silent> <Leader>pr :ProjectRefresh <cr>
+nnoremap <silent> <Leader>pp :ProjectProblems <cr>
 
 " ,ju run unit test for current file.
 nnoremap <silent> <Leader>ju :JUnit<cr>
@@ -392,3 +426,25 @@ autocmd BufRead,BufNewFile *.log set syntax=log4j
 
 " When selecting a word with * don't jump to the next occurrence 
 nnoremap * *``
+
+" Kill fugitive buffers when they are hidden.
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
+
+if executable('coffeetags')
+  let g:tagbar_type_coffee = {
+        \ 'ctagsbin' : 'coffeetags',
+        \ 'ctagsargs' : '',
+        \ 'kinds' : [
+        \ 'f:functions',
+        \ 'o:object',
+        \ ],
+        \ 'sro' : ".",
+        \ 'kind2scope' : {
+        \ 'f' : 'object',
+        \ 'o' : 'object',
+        \ }
+        \ }
+endif
+
+set tags+=tags.coffee
