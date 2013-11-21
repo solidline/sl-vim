@@ -2,7 +2,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
-" colorscheme base16-default
+" set t_Co=256
 
 colorscheme base16-default
 set background=dark
@@ -29,7 +29,7 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeMouseMode = 3
 " map enter to activating a node
 " let NERDTreeMapActivateNode='<C-j>'
-let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf','.classpath','.project','.settings', '\.svn', '\.gems', '\.rbenv-version', 'tags', '.target']
+let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf','.classpath','.project','.settings', '\.svn', '\.gems', '\.rbenv-version', 'tags', '\.target', '.tmp']
 
 " close nerdtree if its the last buffer open.
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -41,7 +41,7 @@ map ,s :Gstatus<CR>
 map ,e :w<CR>
 
 " command-t
-:set wildignore+=*.o,*.obj,.git,target,*.class,*.png,*.jpg
+:set wildignore+=*.o,*.obj,.git,target,*.class,*.png,*.jpg,node_modules
 
 " Type ,hl to toggle highlighting on/off, and show current value.
 noremap ,hl :set hlsearch! hlsearch?<CR>
@@ -141,9 +141,15 @@ scriptencoding utf-8
     au BufRead,BufNewFile *.god set ft=ruby  
     au BufRead,BufNewFile .caprc set ft=ruby  
     au BufRead,BufNewFile .mustache set ft=html  
+    au BufRead,BufNewFile *.ejs set ft=html  
 
     " tm
     au BufRead,BufNewFile software.conf set ft=sh  
+
+    " Dispatch
+    autocmd FileType coffee let b:dispatch = 'mocha %'
+    nnoremap <F9> :Dispatch<CR>
+
   augroup END
 
 
@@ -176,7 +182,7 @@ endfunction
 command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
 nmap ,ws :StripTrailingWhitespaces<CR>
 nmap ,w :wq!<CR>
-nmap ,q :q!<CR>
+nmap ,q :set nowarn<CR>:qall!<CR>
 
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
@@ -286,6 +292,7 @@ filetype plugin indent on
 
 
 nnoremap <Leader>ct :!/usr/local/bin/ctags -R<cr>
+nnoremap <Leader>cst :!cstags -f tags<cr>
 
 " Enable matchit plugin to use % to jump between other tags, html, ruby, etc.
 set nocompatible
@@ -427,6 +434,8 @@ autocmd BufRead,BufNewFile *.log set syntax=log4j
 " When selecting a word with * don't jump to the next occurrence 
 nnoremap * *``
 
+nnoremap <D-v>:set paste<cr>p<ESC>:set nopaste<cr>
+
 " Kill fugitive buffers when they are hidden.
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
@@ -448,3 +457,23 @@ if executable('coffeetags')
 endif
 
 set tags+=tags.coffee
+if executable('coffeetags')
+  let g:tagbar_type_coffee = {
+        \ 'ctagsbin' : 'coffeetags',
+        \ 'ctagsargs' : '--include-vars',
+        \ 'kinds' : [
+        \ 'f:functions',
+        \ 'o:object',
+        \ ],
+        \ 'sro' : ".",
+        \ 'kind2scope' : {
+        \ 'f' : 'object',
+        \ 'o' : 'object',
+        \ }
+        \ }
+endif
+
+
+" Remap snipmate
+ino <c-j> <c-r>=TriggerSnippet()<cr>
+snor <c-j> <esc>i<right><c-r>=TriggerSnippet()<cr>
