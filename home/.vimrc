@@ -475,5 +475,9 @@ endif
 
 
 " Remap snipmate
-ino <c-j> <c-r>=TriggerSnippet()<cr>
-snor <c-j> <esc>i<right><c-r>=TriggerSnippet()<cr>
+" ino <c-j> <c-r>=TriggerSnippet()<cr>
+" snor <c-j> <esc>i<right><c-r>=TriggerSnippet()<cr>
+
+let g:UltiSnipsExpandTrigger='<cr>'
+let g:UltiSnipsJumpForwardTrigger='<c-j>'
+let g:UltiSnipsJumpBackwardTrigger='<c-k>'
