@@ -43,3 +43,6 @@
 [submodule "home/.vim/bundle/airline"]
 	path = home/.vim/bundle/airline
 	url = https://github.com/bling/vim-airline.git
+[submodule "home/.vim/bundle/ultisnip"]
+	path = home/.vim/bundle/ultisnip
+	url = https://github.com/SirVer/ultisnips.git
