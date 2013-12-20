@@ -10,6 +10,8 @@ set background=dark
 set hidden
 set clipboard=unnamed
 
+let g:airline_powerline_fonts = 1
+
 """"""""""
 " NERDTree
 """"""""""
