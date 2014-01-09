@@ -5,7 +5,7 @@ filetype plugin indent on
 " set t_Co=256
 
 colorscheme base16-default
-set background=dark
+set background=light
 
 set hidden
 set clipboard=unnamed
@@ -285,7 +285,7 @@ nnoremap <silent> <buffer> ,rt :JUnit<cr>
 nnoremap <silent> <buffer> ,ft :JUnitFindTest<cr>
 
 " Perform a context sensitive search of the element under the cursor with <enter>.
-nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
+" nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
 
 " Hide dos linebreaks
 nnoremap <silent> <buffer> ,m :ed ++ff=dos %<cr> 
@@ -480,6 +480,6 @@ endif
 " ino <c-j> <c-r>=TriggerSnippet()<cr>
 " snor <c-j> <esc>i<right><c-r>=TriggerSnippet()<cr>
 
-let g:UltiSnipsExpandTrigger='<cr>'
+let g:UltiSnipsExpandTrigger='<c-e>'
 let g:UltiSnipsJumpForwardTrigger='<c-j>'
 let g:UltiSnipsJumpBackwardTrigger='<c-k>'
