@@ -40,9 +40,6 @@
 [submodule "home/.vim/bundle/vim-javascript"]
 	path = home/.vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
-[submodule "home/.vim/bundle/airline"]
-	path = home/.vim/bundle/airline
-	url = https://github.com/bling/vim-airline.git
 [submodule "home/.vim/bundle/ultisnip"]
 	path = home/.vim/bundle/ultisnip
 	url = https://github.com/SirVer/ultisnips.git
@@ -97,3 +94,9 @@
 [submodule "home/.vim/bundle/vim-exchange"]
 	path = home/.vim/bundle/vim-exchange
 	url = https://github.com/tommcdo/vim-exchange
+[submodule "home/.vim/snippets"]
+	path = home/.vim/snippets
+	url = git@github.com:nandryshak/CustomSnippets.git
+[submodule "home/.vim/bundle/vim-snippets"]
+	path = home/.vim/bundle/vim-snippets
+	url = git@github.com:honza/vim-snippets.git

@@ -1,49 +1,33 @@
 execute pathogen#infect()
 syntax on
+Helptags
 filetype plugin indent on
 
-" set t_Co=256
+set t_Co=256
 
 colorscheme base16-default
-set background=light
+set background=dark
 
 set hidden
 set clipboard=unnamed
 
+set relativenumber
+
+set cursorline
+
 let g:airline_powerline_fonts = 1
-
-""""""""""
-" NERDTree
-""""""""""
-
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let g:NERDTreeWinSize = 30
-
-" quit NERDTree after openning a file
-let NERDTreeQuitOnOpen=1
-
-" colored NERD Tree
-let NERDChristmasTree = 1
-let NERDTreeHighlightCursorline = 1
-let NERDTreeShowHidden = 1
-let NERDTreeQuitOnOpen = 1
-let NERDTreeMouseMode = 3
-" map enter to activating a node
-" let NERDTreeMapActivateNode='<C-j>'
-let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf','.classpath','.project','.settings', '\.svn', '\.gems', '\.rbenv-version', 'tags', '\.target', '.tmp']
-
-" close nerdtree if its the last buffer open.
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-" Open the project tree and expose current file in the nerdtree with Ctrl-\
-nnoremap <silent> <C-\> :NERDTreeFind<CR>
 
 map ,s :Gstatus<CR>
 map ,e :w<CR>
 
+" Toggle folds.
+nnoremap <Space> za
+
+" Provide a character to show when line wrap happens.
+set showbreak=↪ 
+
 " command-t
-:set wildignore+=*.o,*.obj,.git,target,*.class,*.png,*.jpg,node_modules
+:set wildignore+=*.o,*.obj,.git,target,*.class,*.png,*.jpg,node_modules,*.DS_Store
 
 " Type ,hl to toggle highlighting on/off, and show current value.
 noremap ,hl :set hlsearch! hlsearch?<CR>
@@ -126,7 +110,6 @@ scriptencoding utf-8
     autocmd FileType ruby,eruby,yaml set autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab
     autocmd FileType python set autoindent shiftwidth=4 softtabstop=4 expandtab
     autocmd FileType javascript,html,htmldjango,css set autoindent shiftwidth=2 softtabstop=2 expandtab
-    autocmd FileType java,xml set autoindent shiftwidth=4 softtabstop=4 expandtab
     autocmd FileType vim set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType cucumber set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
@@ -151,6 +134,17 @@ scriptencoding utf-8
     " Dispatch
     autocmd FileType coffee let b:dispatch = 'mocha %'
     nnoremap <F9> :Dispatch<CR>
+
+    " Fugitive
+    autocmd User Fugitive noremap <buffer> <Leader>gd :Gdiff<cr>
+    " Show git status for the repo
+    autocmd User Fugitive noremap <buffer> <leader>gs :Gstatus<cr>
+
+    " Write the current buffer to git index
+    autocmd User Fugitive noremap <buffer> <leader>gw :Gwrite<cr>
+
+    " Place the cursor at the top of the buffer
+    autocmd VimEnter .git/COMMIT_EDITMSG exe 'normal! gg'
 
   augroup END
 
@@ -182,9 +176,12 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
+
 nmap ,ws :StripTrailingWhitespaces<CR>
 nmap ,w :wq!<CR>
 nmap ,q :set nowarn<CR>:qall!<CR>
+
+nmap <silent> <leader>f <Plug>DashSearch
 
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
@@ -251,6 +248,10 @@ map <Leader>rx :CloseVimTmuxPanes<CR>
 map <Leader>rs :InterruptVimTmuxRunner<CR>
 
 map <Leader>t4 :set tabstop=4 softtabstop=4 shiftwidth=4 expandtab<CR>
+map <Leader>t2 :set tabstop=2 softtabstop=2 shiftwidth=2 expandtab<CR>
+
+nmap <Leader>st4 :set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab<CR>
+nmap <Leader>st2 :set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab<CR>
 
 " Themes
 map <Leader>d :set background=dark<CR>
@@ -267,14 +268,6 @@ imap ,a <return><esc>O<tab>
 " Select text that has just been pasted.
 nnoremap gp `[v`]
 
-" eclim
-
-"  Search for the javadocs of the element under the cursor with <leader>d.
-nnoremap <silent> <buffer> ,jd :JavaDocSearch -x declarations<cr>
-
-" Import the class under the cursor with <leader>i.
-nnoremap <silent> <buffer> ,ji :JavaImport<cr>
-
 map ,gs :Gdiff<CR>
 map ,gw :Gwrite<CR>
 map ,bo :BufOnly<CR>
@@ -284,16 +277,12 @@ nnoremap <silent> <buffer> ,rt :JUnit<cr>
 " Find a unit test for the current class.
 nnoremap <silent> <buffer> ,ft :JUnitFindTest<cr>
 
-" Perform a context sensitive search of the element under the cursor with <enter>.
-" nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
-
 " Hide dos linebreaks
 nnoremap <silent> <buffer> ,m :ed ++ff=dos %<cr> 
 
 filetype plugin indent on
 
-
-nnoremap <Leader>ct :!/usr/local/bin/ctags -R<cr>
+nnoremap <Leader>ct :!ctags -R<cr>
 nnoremap <Leader>cst :!cstags -f tags<cr>
 
 " Enable matchit plugin to use % to jump between other tags, html, ruby, etc.
@@ -314,6 +303,9 @@ let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'passive_filetypes': ['html'] }
 
 
+
+" let g:CommandTMaxHeight = 20
+" let g:CommandTMinHeight = 0
 set linespace=2
 
 
@@ -366,24 +358,16 @@ nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
 
-" eclim settings
 " Eclim settings
-" ,i imports whatever is needed for current line
+
 nnoremap <silent> <Leader>ji :JavaImport<cr>
-" ,d opens javadoc for statement in browser
-" nnoremap <silent> <Leader>d :JavaDocSearch -x declarations<cr>
-" ,<enter> searches context for statement
-nnoremap <silent> <Leader><cr> :JavaSearchContext<cr>
-" ,jv validates current java file
+nnoremap <silent> <Leader>js :JavaSearchContext<cr>
 nnoremap <silent> <Leader>jv :Validate<cr>
-" ,jc shows corrections for the current line of java
 nnoremap <silent> <Leader>jc :JavaCorrect<cr>
-
-" ,jg java getter and setter.
 nnoremap <silent> <Leader>jg :JavaGetSet<cr>
-
 nnoremap <silent> <Leader>pr :ProjectRefresh <cr>
-nnoremap <silent> <Leader>pp :ProjectProblems <cr>
+nnoremap <silent> <Leader>pp :ProjectProblems! <cr>
+
 
 " ,ju run unit test for current file.
 nnoremap <silent> <Leader>ju :JUnit<cr>
@@ -423,6 +407,10 @@ if has('mouse')
   endif
 endif
 
+if !has("gui_running")
+  set term=screen-256color
+endif
+
 " Use jsctags for browsing javascript files.
 let g:tagbar_type_javascript = {
     \ 'ctagsbin' : '/usr/local/bin/jsctags'
@@ -440,7 +428,7 @@ nnoremap <D-v>:set paste<cr>p<ESC>:set nopaste<cr>
 
 " Kill fugitive buffers when they are hidden.
 autocmd BufReadPost fugitive://* set bufhidden=delete
-
+nnoremap <buffer> <silent> cv :<C-U>Gcommit -v<CR>
 
 if executable('coffeetags')
   let g:tagbar_type_coffee = {
@@ -476,10 +464,25 @@ if executable('coffeetags')
 endif
 
 
-" Remap snipmate
-" ino <c-j> <c-r>=TriggerSnippet()<cr>
-" snor <c-j> <esc>i<right><c-r>=TriggerSnippet()<cr>
-
 let g:UltiSnipsExpandTrigger='<c-e>'
 let g:UltiSnipsJumpForwardTrigger='<c-j>'
 let g:UltiSnipsJumpBackwardTrigger='<c-k>'
+
+function! GrepQuickFix(pat)
+  let all = getqflist()
+  for d in all
+    if bufname(d['bufnr']) !~ a:pat && d['text'] !~ a:pat
+        call remove(all, index(all,d))
+    endif
+  endfor
+  call setqflist(all)
+endfunction
+command! -nargs=* GrepQF call GrepQuickFix(<q-args>)
+
+let g:netrw_list_hide= '.*\.DS_Store$'
+
+
+" Preview on the right
+let g:netrw_preview=1
+" Open on the right
+let g:netrw_altv=1
