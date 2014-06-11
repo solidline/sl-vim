@@ -88,3 +88,9 @@
 [submodule "home/.vim/bundle/vim-snippets"]
 	path = home/.vim/bundle/vim-snippets
 	url = https://github.com/solidline/vim-snippets.git
+[submodule "home/.vim/bundle/vim-polygolt"]
+	path = home/.vim/bundle/vim-polygolt
+	url = git@github.com:sheerun/vim-polyglot.git
+[submodule "home/.vim/bundle/vim-merginal"]
+	path = home/.vim/bundle/vim-merginal
+	url = git@github.com:idanarye/vim-merginal.git

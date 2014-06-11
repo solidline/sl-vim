@@ -54,6 +54,9 @@ nnoremap <D-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
   nnoremap <silent> <Leader>cn :let @* = expand("%:t")<CR>
   map <Leader>ef :echo expand("%:p")<CR>
 
+
+  nnoremap <silent> <Leader>us <C-W>s :UltiSnipsEdit <CR> :g!/^snippet/d<CR>
+
 scriptencoding utf-8
 
   " These two enable syntax highlighting
@@ -359,15 +362,17 @@ set pastetoggle=<F2>
 set showmode
 
 " Eclim settings
+" configuration options found at: <http://eclim.org/vim/core/eclim.html>
 
 nnoremap <silent> <Leader>ji :JavaImport<cr>
+nnoremap <silent> <Leader>ju :JUnit<cr>
 nnoremap <silent> <Leader>js :JavaSearchContext<cr>
 nnoremap <silent> <Leader>jv :Validate<cr>
 nnoremap <silent> <Leader>jc :JavaCorrect<cr>
 nnoremap <silent> <Leader>jg :JavaGetSet<cr>
 nnoremap <silent> <Leader>pr :ProjectRefresh <cr>
 nnoremap <silent> <Leader>pp :ProjectProblems! <cr>
-
+let g:EclimSignLevel = "warning"
 
 " ,ju run unit test for current file.
 nnoremap <silent> <Leader>ju :JUnit<cr>
