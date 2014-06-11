@@ -4,9 +4,6 @@
 [submodule "home/.vim/bundle/vim-surround"]
 	path = home/.vim/bundle/vim-surround
 	url = git://github.com/tpope/vim-surround.git
-[submodule "home/.vim/bundle/vim-coffee-script"]
-	path = home/.vim/bundle/vim-coffee-script
-	url = git://github.com/kchmck/vim-coffee-script.git
 [submodule "home/.vim/bundle/vim-extradite"]
 	path = home/.vim/bundle/vim-extradite
 	url = git://github.com/int3/vim-extradite
@@ -19,9 +16,6 @@
 [submodule "home/.vim/bundle/vim-command-t"]
 	path = home/.vim/bundle/vim-command-t
 	url = git://git.wincent.com/command-t.git
-[submodule "home/.vim/bundle/vim-less"]
-	path = home/.vim/bundle/vim-less
-	url = git://github.com/groenewege/vim-less.git
 [submodule "home/.vim/bundle/vim-commentary"]
 	path = home/.vim/bundle/vim-commentary
 	url = git://github.com/tpope/vim-commentary.git
@@ -37,9 +31,6 @@
 [submodule "home/.vim/bundle/ag.vim"]
 	path = home/.vim/bundle/ag.vim
 	url = https://github.com/epmatsw/ag.vim.git
-[submodule "home/.vim/bundle/vim-javascript"]
-	path = home/.vim/bundle/vim-javascript
-	url = https://github.com/pangloss/vim-javascript.git
 [submodule "home/.vim/bundle/ultisnip"]
 	path = home/.vim/bundle/ultisnip
 	url = https://github.com/SirVer/ultisnips.git
@@ -76,9 +67,6 @@
 [submodule "home/.vim/bundle/indexer"]
 	path = home/.vim/bundle/indexer
 	url = git@github.com:phreaknerd/vim-indexer.git
-[submodule "home/.vim/bundle/xml.vim"]
-	path = home/.vim/bundle/xml.vim
-	url = git@github.com:othree/xml.vim.git
 [submodule "home/.vim/bundle/csv.vim"]
 	path = home/.vim/bundle/csv.vim
 	url = git@github.com:chrisbra/csv.vim.git
@@ -99,4 +87,4 @@
 	url = git@github.com:nandryshak/CustomSnippets.git
 [submodule "home/.vim/bundle/vim-snippets"]
 	path = home/.vim/bundle/vim-snippets
-	url = git@github.com:honza/vim-snippets.git
+	url = https://github.com/solidline/vim-snippets.git
