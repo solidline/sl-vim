@@ -491,3 +491,20 @@ let g:netrw_list_hide= '.*\.DS_Store$'
 let g:netrw_preview=1
 " Open on the right
 let g:netrw_altv=1
+
+" Avoid formatting issues when pasting from mac.
+if &term =~ "xterm.*"
+    let &t_ti = &t_ti . "\e[?2004h"
+    let &t_te = "\e[?2004l" . &t_te
+    function XTermPasteBegin(ret)
+        set pastetoggle=<Esc>[201~
+        set paste
+        return a:ret
+    endfunction
+    map <expr> <Esc>[200~ XTermPasteBegin("i")
+    imap <expr> <Esc>[200~ XTermPasteBegin("")
+    cmap <Esc>[200~ <nop>
+    cmap <Esc>[201~ <nop>
+endif
+
+let g:syntastic_javascript_checkers = ['eslint']
