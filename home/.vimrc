@@ -5,17 +5,24 @@ filetype plugin indent on
 
 set t_Co=256
 
-colorscheme base16-default
+colorscheme base16-tomorrow
+
 set background=dark
+
+" Color Adjustments
+
+" hi LineNr ctermfg=black ctermbg=black
+" hi CursorLine cterm=NONE ctermbg=black ctermfg=white
+" hi clear SignColumn
 
 set hidden
 set clipboard=unnamed
+set cursorline
 
 set relativenumber
 
-set cursorline
-
 let g:airline_powerline_fonts = 1
+
 
 map ,s :Gstatus<CR>
 map ,e :w<CR>
@@ -24,7 +31,7 @@ map ,e :w<CR>
 nnoremap <Space> za
 
 " Provide a character to show when line wrap happens.
-set showbreak=↪ 
+set showbreak=↪  
 
 " command-t
 :set wildignore+=*.o,*.obj,.git,target,*.class,*.png,*.jpg,node_modules,*.DS_Store
@@ -119,15 +126,7 @@ scriptencoding utf-8
     au BufRead,BufNewFile *etc/nginx/* set ft=nginx 
     au BufRead,BufNewFile *.sbt set ft=scala 
 
-    " treat rackup files like ruby
-    au BufRead,BufNewFile *.ru set ft=ruby
-    au BufRead,BufNewFile Gemfile set ft=ruby
     autocmd BufEnter *.haml setlocal cursorcolumn
-    au BufRead,BufNewFile Gemfile set ft=ruby                                   
-    au BufRead,BufNewFile Capfile set ft=ruby                                   
-    au BufRead,BufNewFile Thorfile set ft=ruby                                   
-    au BufRead,BufNewFile *.god set ft=ruby  
-    au BufRead,BufNewFile .caprc set ft=ruby  
     au BufRead,BufNewFile .mustache set ft=html  
     au BufRead,BufNewFile *.ejs set ft=html  
 
@@ -266,7 +265,7 @@ map <Leader>l :set background=light<CR>
 imap <C-a> <esc>wa
 
 " When using delimitMate typing "{" produces "{}" this breaks the brackets out
-imap ,a <return><esc>O<tab>
+imap ,a <return><esc><tab>I
 
 " Select text that has just been pasted.
 nnoremap gp `[v`]
@@ -372,18 +371,23 @@ nnoremap <silent> <Leader>jc :JavaCorrect<cr>
 nnoremap <silent> <Leader>jg :JavaGetSet<cr>
 nnoremap <silent> <Leader>pr :ProjectRefresh <cr>
 nnoremap <silent> <Leader>pp :ProjectProblems! <cr>
-let g:EclimSignLevel = "warning"
+" let g:EclimSignLevel = "error"
+
+let g:EclimLogLevel = 'error'
+
+let g:EclimHighlightWarning = 'Normal'
 
 " ,ju run unit test for current file.
 nnoremap <silent> <Leader>ju :JUnit<cr>
 " 'open' on OSX will open the url in the default browser without issue
 let g:EclimBrowser='open'
+
 " Disable Eclim's taglisttoo because I use the regular taglist plugin
 "let g:taglisttoo_disabled = 1
 " Disable HTML
 let g:EclimHtmlValidate = 0
 
-let g:EclimValidateSortResults = "errors"
+" let g:EclimValidateSortResults = "off"
 
 " tmux will only forward escape sequences to the terminal if surrounded by a DCS sequence
 " http://sourceforge.net/mailarchive/forum.php?thread_name=AANLkTinkbdoZ8eNR1X2UobLTeww1jFrvfJxTMfKSq-L%2B%40mail.gmail.com&forum_name=tmux-users
@@ -412,9 +416,13 @@ if has('mouse')
   endif
 endif
 
-if !has("gui_running")
-  set term=screen-256color
-endif
+" if !has("gui_running")
+"   set term=screen-256color
+" endif
+
+" if has("gui_running")
+"  colorscheme base16-chalk
+" endif
 
 " Use jsctags for browsing javascript files.
 let g:tagbar_type_javascript = {
@@ -492,19 +500,9 @@ let g:netrw_preview=1
 " Open on the right
 let g:netrw_altv=1
 
-" Avoid formatting issues when pasting from mac.
-if &term =~ "xterm.*"
-    let &t_ti = &t_ti . "\e[?2004h"
-    let &t_te = "\e[?2004l" . &t_te
-    function XTermPasteBegin(ret)
-        set pastetoggle=<Esc>[201~
-        set paste
-        return a:ret
-    endfunction
-    map <expr> <Esc>[200~ XTermPasteBegin("i")
-    imap <expr> <Esc>[200~ XTermPasteBegin("")
-    cmap <Esc>[200~ <nop>
-    cmap <Esc>[201~ <nop>
-endif
-
 let g:syntastic_javascript_checkers = ['eslint']
+
+nmap [h <Plug>GitGutterPrevHunk
+nmap ]h <Plug>GitGutterNextHunk
+
+let g:indentLine_fileType = ['java']
