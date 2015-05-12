@@ -85,12 +85,14 @@
 [submodule "home/.vim/bundle/vim-snippets"]
 	path = home/.vim/bundle/vim-snippets
 	url = https://github.com/solidline/vim-snippets.git
+	ignore = untracked
 [submodule "home/.vim/bundle/vim-polygolt"]
 	path = home/.vim/bundle/vim-polygolt
 	url = git@github.com:sheerun/vim-polyglot.git
 [submodule "home/.vim/bundle/vim-merginal"]
 	path = home/.vim/bundle/vim-merginal
 	url = git@github.com:idanarye/vim-merginal.git
+	ignore = untracked
 [submodule "home/.vim/bundle/vim-gitgutter"]
 	path = home/.vim/bundle/vim-gitgutter
 	url = git://github.com/airblade/vim-gitgutter.git
@@ -109,3 +111,9 @@
 [submodule "home/.vim/bundle/vim-jdaddy"]
 	path = home/.vim/bundle/vim-jdaddy
 	url = https://github.com/tpope/vim-jdaddy.git
+[submodule "home/.vim/bundle/vim-flow"]
+	path = home/.vim/bundle/vim-flow
+	url = git://github.com/facebook/vim-flow.git
+[submodule "home/.vim/bundle/fugitive-gitlab"]
+	path = home/.vim/bundle/fugitive-gitlab
+	url = https://github.com/shumphrey/fugitive-gitlab.vim.git

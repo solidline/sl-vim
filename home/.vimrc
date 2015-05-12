@@ -1,11 +1,21 @@
+let base16colorspace=256  " Access colors present in 256 colorspace"
+
+let gitlabHome=$GITLAB_HOME
+
+let g:fugitive_gitlab_domains = [gitlabHome]
+
 execute pathogen#infect()
 syntax on
 Helptags
 filetype plugin indent on
 
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
 set t_Co=256
 
-colorscheme base16-tomorrow
+colorscheme base16-default
 
 set background=dark
 
@@ -17,7 +27,7 @@ set background=dark
 
 set hidden
 set clipboard=unnamed
-set cursorline
+" set cursorline
 
 set relativenumber
 
@@ -225,6 +235,9 @@ nnoremap <silent> ]B :blast<CR>
 
 " expand the current buffer path
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+" copy the path to the buffer
+noremap <silent> <F4> :let @+=expand("%:p")<CR>
 
 " vimux
 " Run the current file with rspec
