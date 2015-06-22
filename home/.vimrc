@@ -519,3 +519,16 @@ nmap [h <Plug>GitGutterPrevHunk
 nmap ]h <Plug>GitGutterNextHunk
 
 let g:indentLine_fileType = ['java']
+
+" disable Background Color Erase (BCE) by clearing the t_ut terminal option (run :set t_ut= in Vim and then press Control+L to refresh the terminal's display) so that color schemes work properly when Vim is used inside tmux and GNU screen.
+set t_ut=
+
+" :let @a = ''
+" :bufdo CopyMatches A
+function! CopyMatches(reg)
+  let hits = []
+  %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/ge
+  let reg = empty(a:reg) ? '+' : a:reg
+  execute 'let @'.reg.' = join(hits, "\n") . "\n"'
+endfunction
+command! -register CopyMatches call CopyMatches(<q-reg>)
