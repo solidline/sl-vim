@@ -15,6 +15,9 @@ python del powerline_setup
 
 set t_Co=256
 
+" Ignore white space.
+set diffopt+=iwhite
+
 colorscheme base16-default
 
 set background=dark
@@ -27,7 +30,7 @@ set background=dark
 
 set hidden
 set clipboard=unnamed
-" set cursorline
+set cursorline
 
 set relativenumber
 
@@ -97,7 +100,7 @@ scriptencoding utf-8
   "set list listchars=tab:»·,trail:·
 
   " don't make it look like there are line breaks where there aren't:
-  "set nowrap
+  set nowrap
 
   " assume the /g flag on :s substitutions to replace all matches in a line:
   set gdefault
