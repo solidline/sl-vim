@@ -120,3 +120,6 @@
 [submodule "home/.vim/bundle/vim-perl"]
 	path = home/.vim/bundle/vim-perl
 	url = https://github.com/vim-perl/vim-perl
+[submodule "home/.vim/bundle/vim-dash"]
+	path = home/.vim/bundle/vim-dash
+	url = https://github.com/rizzatti/dash.vim.git
