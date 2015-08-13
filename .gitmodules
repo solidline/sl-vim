@@ -123,3 +123,6 @@
 [submodule "home/.vim/bundle/vim-dash"]
 	path = home/.vim/bundle/vim-dash
 	url = https://github.com/rizzatti/dash.vim.git
+[submodule "home/.vim/bundle/vim-rest-console"]
+	path = home/.vim/bundle/vim-rest-console
+	url = git@github.com:diepm/vim-rest-console.git
