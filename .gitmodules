@@ -126,3 +126,6 @@
 [submodule "home/.vim/bundle/vim-rest-console"]
 	path = home/.vim/bundle/vim-rest-console
 	url = git@github.com:diepm/vim-rest-console.git
+[submodule "home/.vim/bundle/vim-javascript"]
+	path = home/.vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
