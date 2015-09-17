@@ -9,6 +9,10 @@ syntax on
 Helptags
 filetype plugin indent on
 
+set rtp+=~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
+
+set rtp+=~/.vim/snippets-angular/snippets/**/*.snippets
+
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
@@ -74,6 +78,7 @@ nnoremap <D-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
   nnoremap <silent> <Leader>cn :let @* = expand("%:t")<CR>
   map <Leader>ef :echo expand("%:p")<CR>
 
+  let g:UltiSnipsSnippetsDir="~/.vim/bundle/vim-snippets/UltiSnips"
 
   nnoremap <silent> <Leader>us <C-W>s :UltiSnipsEdit <CR> :g!/^snippet/d<CR>
 
@@ -197,6 +202,11 @@ nmap ,w :wq!<CR>
 nmap ,q :set nowarn<CR>:qall!<CR>
 
 nmap <silent> <leader>f <Plug>DashSearch
+
+
+let g:dash_map = {
+\ 'javascript' : ['angular', 'javascript', 'jasmine']
+\ }
 
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
@@ -324,6 +334,9 @@ let g:syntastic_mode_map = { 'mode': 'active',
 
 " let g:CommandTMaxHeight = 20
 " let g:CommandTMinHeight = 0
+
+let g:CommandTWildIgnore=&wildignore . ",**/bower_components/*"
+
 set linespace=2
 
 
