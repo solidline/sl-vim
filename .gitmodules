@@ -129,3 +129,15 @@
 [submodule "home/.vim/bundle/vim-javascript"]
 	path = home/.vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
+[submodule "home/.vim/bundle/vim-jsx"]
+	path = home/.vim/bundle/vim-jsx
+	url = https://github.com/mxw/vim-jsx.git
+[submodule "home/.vim/bundle/vim-editorconfig"]
+	path = home/.vim/bundle/vim-editorconfig
+	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "home/.vim/bundle/vim-eunuch"]
+	path = home/.vim/bundle/vim-eunuch
+	url = git@github.com:tpope/vim-eunuch.git
+[submodule "home/.vim/bundle/vim-java"]
+	path = home/.vim/bundle/vim-java
+	url = https://github.com/vim-jp/vim-java.git

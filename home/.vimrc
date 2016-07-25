@@ -11,8 +11,6 @@ filetype plugin indent on
 
 set rtp+=~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
 
-set rtp+=~/.vim/snippets-angular/snippets/**/*.snippets
-
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
@@ -26,14 +24,9 @@ colorscheme base16-default
 
 set background=dark
 
-" Color Adjustments
-
-" hi LineNr ctermfg=black ctermbg=black
-" hi CursorLine cterm=NONE ctermbg=black ctermfg=white
-" hi clear SignColumn
-
 set hidden
 set clipboard=unnamed
+
 set cursorline
 
 set relativenumber
@@ -51,7 +44,7 @@ nnoremap <Space> za
 set showbreak=↪  
 
 " command-t
-:set wildignore+=*.o,*.obj,.git,target,*.class,*.png,*.jpg,node_modules,*.DS_Store
+:set wildignore+=*.o,*.obj,.git,target,*.class,*.png,*.jpg,node_modules,*.DS_Store,*.iml,\.idea/*,dist
 
 " Type ,hl to toggle highlighting on/off, and show current value.
 noremap ,hl :set hlsearch! hlsearch?<CR>
@@ -140,9 +133,12 @@ scriptencoding utf-8
     autocmd FileType javascript,html,htmldjango,css set autoindent shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType vim set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType cucumber set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+    autocmd Filetype java setl makeprg=mvn
+
     au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
     au BufRead,BufNewFile *etc/nginx/* set ft=nginx 
     au BufRead,BufNewFile *.sbt set ft=scala 
+    au BufRead,BufNewFile *.tf set ft=ruby
 
     autocmd BufEnter *.haml setlocal cursorcolumn
     au BufRead,BufNewFile .mustache set ft=html  
@@ -152,7 +148,6 @@ scriptencoding utf-8
     au BufRead,BufNewFile software.conf set ft=sh  
 
     " Dispatch
-    autocmd FileType coffee let b:dispatch = 'mocha %'
     nnoremap <F9> :Dispatch<CR>
 
     " Fugitive
@@ -167,7 +162,6 @@ scriptencoding utf-8
     autocmd VimEnter .git/COMMIT_EDITMSG exe 'normal! gg'
 
   augroup END
-
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -204,9 +198,11 @@ nmap ,q :set nowarn<CR>:qall!<CR>
 nmap <silent> <leader>f <Plug>DashSearch
 
 
-let g:dash_map = {
-\ 'javascript' : ['angular', 'javascript', 'jasmine']
-\ }
+" let g:dash_map = {
+" \ 'javascript' : ['angular', 'javascript', 'jasmine']
+" \ }
+
+nmap <silent> <leader>d <Plug>DashSearch
 
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
@@ -281,10 +277,6 @@ map <Leader>t2 :set tabstop=2 softtabstop=2 shiftwidth=2 expandtab<CR>
 nmap <Leader>st4 :set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab<CR>
 nmap <Leader>st2 :set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab<CR>
 
-" Themes
-map <Leader>d :set background=dark<CR>
-map <Leader>l :set background=light<CR>
-
 "When typing a string, your quotes auto complete. Move past the quote
 "while still in insert mode by hitting Ctrl-a. Example:
 " type 'foo<c-a>
@@ -325,98 +317,30 @@ nnoremap <F3> :NumbersToggle<CR>
 " GUI
 set gfn=Monaco:h14
 
-" Specify the types of modes to check for.
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': ['javascript', 'java'],
-                           \ 'passive_filetypes': ['html'] }
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_html_tidy_exec = 'tidy5'
+let g:syntastic_javascript_checkers = ['eslint']
 
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
+" CommandT
+  " let g:CommandTMaxHeight = 20
+  " let g:CommandTMinHeight = 0
 
-" let g:CommandTMaxHeight = 20
-" let g:CommandTMinHeight = 0
+  let g:CommandTWildIgnore=&wildignore
 
-let g:CommandTWildIgnore=&wildignore . ",**/bower_components/*"
+  nnoremap <silent> <Leader>y :CommandTTag<CR>
 
 set linespace=2
 
-
-" Example:
-"
-"   Before:
-"
-"   UI.Layout = Marionette.Layout.extend({
-"
-"
-"   After:
-"
-"   // UI.Layout
-"   // ---------
-"   
-"   // Hello
-"   UI.Layout = Marionette.Layout.extend({
-
-function CommentJSClass()
-  normal yypki// f=Dxyyplllv$r-0o0Do		// Hello
-endfunction
-
-
-" Javascript create comment
-nnoremap <leader>cj :call CommentJSClass()<CR>
-
-" vimux commands
- map <Leader>rr :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
-
- " Prompt for a command to run
- map <Leader>rp :VimuxPromptCommand<CR>
- 
- " Run last command executed by VimuxRunCommand
- map <Leader>rl :VimuxRunLastCommand<CR>
- 
- " Inspect runner pane
- map <Leader>ri :VimuxInspectRunner<CR>
- 
- " Close all other tmux panes in current window
- map <Leader>rx :VimuxClosePanes<CR>
- 
- " Close vim tmux runner opened by VimuxRunCommand
- map <Leader>rq :VimuxCloseRunner<CR>
- 
- " Interrupt any command running in the runner pane
- map <Leader>rc :VimuxInterruptRunner<CR>
 
 " toggle paste
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
-
-" Eclim settings
-" configuration options found at: <http://eclim.org/vim/core/eclim.html>
-
-nnoremap <silent> <Leader>ji :JavaImport<cr>
-nnoremap <silent> <Leader>ju :JUnit<cr>
-nnoremap <silent> <Leader>js :JavaSearchContext<cr>
-nnoremap <silent> <Leader>jv :Validate<cr>
-nnoremap <silent> <Leader>jc :JavaCorrect<cr>
-nnoremap <silent> <Leader>jg :JavaGetSet<cr>
-nnoremap <silent> <Leader>pr :ProjectRefresh <cr>
-nnoremap <silent> <Leader>pp :ProjectProblems! <cr>
-" let g:EclimSignLevel = "error"
-
-let g:EclimLogLevel = 'error'
-
-let g:EclimHighlightWarning = 'Normal'
-
-" ,ju run unit test for current file.
-nnoremap <silent> <Leader>ju :JUnit<cr>
-" 'open' on OSX will open the url in the default browser without issue
-let g:EclimBrowser='open'
-
-" Disable Eclim's taglisttoo because I use the regular taglist plugin
-"let g:taglisttoo_disabled = 1
-" Disable HTML
-let g:EclimHtmlValidate = 0
-
-" let g:EclimValidateSortResults = "off"
 
 " tmux will only forward escape sequences to the terminal if surrounded by a DCS sequence
 " http://sourceforge.net/mailarchive/forum.php?thread_name=AANLkTinkbdoZ8eNR1X2UobLTeww1jFrvfJxTMfKSq-L%2B%40mail.gmail.com&forum_name=tmux-users
@@ -508,7 +432,7 @@ endif
 
 let g:UltiSnipsExpandTrigger='<c-e>'
 let g:UltiSnipsJumpForwardTrigger='<c-j>'
-let g:UltiSnipsJumpBackwardTrigger='<c-k>'
+let g:UltiSnipsJumpBackwardTrigger='<c-n>'
 
 function! GrepQuickFix(pat)
   let all = getqflist()
@@ -529,8 +453,6 @@ let g:netrw_preview=1
 " Open on the right
 let g:netrw_altv=1
 
-let g:syntastic_javascript_checkers = ['eslint']
-
 nmap [h <Plug>GitGutterPrevHunk
 nmap ]h <Plug>GitGutterNextHunk
 
@@ -548,3 +470,25 @@ function! CopyMatches(reg)
   execute 'let @'.reg.' = join(hits, "\n") . "\n"'
 endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)
+
+" for linux and windows users (using the control key)
+map <C-S-]> gt
+map <C-S-[> gT
+map <C-1> 1gt
+map <C-2> 2gt
+map <C-3> 3gt
+map <C-4> 4gt
+map <C-5> 5gt
+map <C-6> 6gt
+map <C-7> 7gt
+map <C-8> 8gt
+map <C-9> 9gt
+map <C-0> :tablast<CR>
+
+" delete a directory
+let g:netrw_localrmdir="rm -r"
+
+" highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+" highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+" highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+" highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
