@@ -141,3 +141,9 @@
 [submodule "home/.vim/bundle/vim-java"]
 	path = home/.vim/bundle/vim-java
 	url = https://github.com/vim-jp/vim-java.git
+[submodule "home/.vim/bundle/unite"]
+	path = home/.vim/bundle/unite
+	url = https://github.com/Shougo/unite.vim.git
+[submodule "home/.vim/bundle/neomru"]
+	path = home/.vim/bundle/neomru
+	url = https://github.com/Shougo/neomru.vim.git
