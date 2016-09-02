@@ -11,6 +11,14 @@ let mapleader = ","
 
 set termguicolors
 
+" Toggle folds.
+nnoremap <Space> za
+
+" can has foldin plz?
+set foldenable
+set foldmethod=syntax
+set foldlevel=999 " make it really high, so they're not displayed by default
+
 " Fugitive
 autocmd User Fugitive noremap <buffer> <Leader>gd :Gdiff<cr>
 " Show git status for the repo
@@ -79,5 +87,7 @@ if executable('pt')
 endif
 
 nnoremap <C-l> :Unite -no-split -start-insert buffer file file_rec/neovim<CR>
-nnoremap <C-;> :Unite file_mru<CR>
+nnoremap <C-j> :Unite -start-insert file_mru<CR>
 nnoremap <C-r> :source ~/.config/nvim/init.vim<CR>
+
+autocmd! BufWritePost * Neomake

@@ -1,5 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Users/tad.sanden/repos/caui-job/caui-job-main/src/main/java/com/ticketmaster/caui'
-let g:netrw_dirhist_2='/Users/tad.sanden/repos/caui-job/caui-job-main/src/main/java/com/ticketmaster/caui/controller'
-let g:netrw_dirhist_3='/Users/tad.sanden/repos/caui-job/caui-job-main/src/main/java/com/ticketmaster/caui/domain'
+let g:netrw_dirhist_cnt =0
