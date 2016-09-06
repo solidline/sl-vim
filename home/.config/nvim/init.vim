@@ -91,3 +91,7 @@ nnoremap <C-j> :Unite -start-insert file_mru<CR>
 nnoremap <C-r> :source ~/.config/nvim/init.vim<CR>
 
 autocmd! BufWritePost * Neomake
+
+let g:EclimCompletionMethod = 'omnifunc'
+
+nmap <silent> <leader>d <Plug>DashSearch
