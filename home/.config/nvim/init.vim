@@ -2,14 +2,22 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
-colorscheme base16-default-dark
+" colorscheme base16-default-dark
+
+" set t_Co=256
+" set background=dark
+
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " Change <Leader>
 let mapleader = ","
 
-set termguicolors
+" set termguicolors
 
 " Toggle folds.
 nnoremap <Space> za
@@ -86,12 +94,33 @@ if executable('pt')
   let g:unite_source_grep_encoding = 'utf-8'
 endif
 
-nnoremap <C-l> :Unite -no-split -start-insert buffer file file_rec/neovim<CR>
+nnoremap <C-l> :Unite -no-split -start-insert buffer file file_rec/git<CR>
 nnoremap <C-j> :Unite -start-insert file_mru<CR>
 nnoremap <C-r> :source ~/.config/nvim/init.vim<CR>
 
-autocmd! BufWritePost * Neomake
+" autocmd! BufWritePost * Neomake
 
 let g:EclimCompletionMethod = 'omnifunc'
 
 nmap <silent> <leader>d <Plug>DashSearch
+
+let gitlabHome=$GITLAB_HOME
+let g:fugitive_gitlab_domains = [gitlabHome]
+
+" This was a life saver:
+" https://wincent.com/blog/tweaking-command-t-and-vim-for-use-in-the-terminal-and-tmux
+if has('mouse')
+  set mouse=a
+  if &term =~ "xterm" || &term =~ "screen"
+    " for some reason, doing this directly with 'set ttymouse=xterm2'
+    " doesn't work -- 'set ttymouse?' returns xterm2 but the mouse
+    " makes tmux enter copy mode instead of selecting or scrolling
+    " inside Vim -- but luckily, setting it up from within autocmds
+    " works                   
+    autocmd VimEnter * set ttymouse=xterm2
+    autocmd FocusGained * set ttymouse=xterm2
+    autocmd BufEnter * set ttymouse=xterm2
+  endif
+endif
+
+set clipboard=unnamed
