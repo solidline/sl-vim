@@ -1,68 +1,133 @@
-execute pathogen#infect()
-syntax on
-filetype plugin indent on
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" colorscheme base16-default-dark
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" set t_Co=256
-" set background=dark
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'chriskempson/base16-vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'int3/vim-extradite'
+Plugin 'tpope/vim-rhubarb'
+Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+" Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-tbone'
+Plugin 'wincent/command-t'
+Plugin 'mileszs/ack.vim'
+" Plugin 'airblade/vim-gitgutter'
+Plugin 'bronson/vim-visual-star-search'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'scrooloose/syntastic'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'keith/swift.vim'
+Plugin 'rking/ag.vim'
+Plugin 'udalov/kotlin-vim'
+Plugin 'tfnico/vim-gradle'
+Plugin 'vimwiki/vimwiki'
+Plugin 'itchyny/calendar.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'skywind3000/asyncrun.vim'
+Plugin 'metakirby5/codi.vim'
+Plugin 'elzr/vim-json'
+Plugin 'jparise/vim-graphql'
+Plugin 'gregsexton/gitv'
+Plugin 'leafgarland/typescript-vim'
+" Plugin 'akhaku/vim-java-unused-imports'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'nelstrom/vim-qargs'
+Plugin 'w0rp/ale'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
 endif
 
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+filetype plugin indent on    " required
 
-" Change <Leader>
-let mapleader = ","
-
-" set termguicolors
+map ,s :Gstatus<CR>
+map ,e :w<CR>
 
 " Toggle folds.
 nnoremap <Space> za
+ 
+" Provide a character to show when line wrap happens.
+set showbreak=↪  
 
-" can has foldin plz?
-set foldenable
-set foldmethod=syntax
-set foldlevel=999 " make it really high, so they're not displayed by default
+" Apple-* Highlight all occurrences of current word (like '*' but without moving)
+" http://vim.wikia.com/wiki/Highlight_all_search_pattern_matches
+nnoremap <D-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
-" Fugitive
-autocmd User Fugitive noremap <buffer> <Leader>gd :Gdiff<cr>
-" Show git status for the repo
-autocmd User Fugitive noremap <buffer> <leader>gs :Gstatus<cr>
+" keybindings
+  " Press i to enter insert mode, and kj to exit.
+  :inoremap jk <Esc>
+  :inoremap kj <Esc>
 
-" Write the current buffer to git index
-autocmd User Fugitive noremap <buffer> <leader>gw :Gwrite<cr>
+  " Disable paste mode when leaving insert
+   au InsertLeave * set nopaste
 
-" Place the cursor at the top of the buffer
-autocmd VimEnter .git/COMMIT_EDITMSG exe 'normal! gg'
+" no swap file
+  set noswapfile
+  set nobackup
+  set nowb
 
+scriptencoding utf-8
 
+ " Change <Leader>
+  let mapleader = ","
 
-" via: http://rails-bestpractices.com/posts/60-remove-trailing-whitespace
-" Strip trailing whitespace
-function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
-command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
+" When scrolling off-screen do so 3 lines at a time, not 1
+  set scrolloff=3
 
-nmap ,ws :StripTrailingWhitespaces<CR>
-nmap ,w :wq!<CR>
-nmap ,q :set nowarn<CR>:qall!<CR>
+  " enable line numbers 
+  set number
+  setlocal numberwidth=5
 
-nmap <silent> <leader>f <Plug>DashSearch
+  " Nice statusbar
+  set laststatus=2
+  set statusline=\ "
+  set statusline+=%f\ " file name
+  set statusline+=[
+  set statusline+=%{strlen(&ft)?&ft:'none'}, " filetype
+  set statusline+=%{&fileformat}] " file format
+  set statusline+=%h%1*%m%r%w%0* " flag
+  set statusline+=%= " right align
+  set statusline+=%-14.(%l,%c%V%)\ %<%P " offset
 
-" format json
-map <Leader>j !python -m json.tool<CR>
+  " can has foldin plz?
+  set foldenable
+  set foldmethod=syntax
+  set foldlevel=999 " make it really high, so they're not displayed by default
+
+  " highlight search
+  set hlsearch
+
+  set autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab " set the default
 
 " better buffer management
 nnoremap <silent> [b :bprevious<CR>
@@ -70,57 +135,45 @@ nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
+
 map <Leader>t4 :set tabstop=4 softtabstop=4 shiftwidth=4 expandtab<CR>
 map <Leader>t2 :set tabstop=2 softtabstop=2 shiftwidth=2 expandtab<CR>
 
 nmap <Leader>st4 :set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab<CR>
 nmap <Leader>st2 :set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab<CR>
 
+" Select text that has just been pasted.
+nnoremap gp `[v`]
+
 map ,gs :Gdiff<CR>
 map ,gw :Gwrite<CR>
-map ,bo :BufOnly<CR>G
+map ,bo :BufOnly<CR>
+
+nmap [h <Plug>GitGutterPrevHunk
+nmap ]h <Plug>GitGutterNextHunk
+
+let g:github_enterprise_urls = ['https://git.gbl.experiancs.com']
 
 
-set linespace=2
+" Send more characters for redraws
+set ttyfast
 
-let g:unite_source_history_yank_enable = 1
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" Enable mouse use in all modes
+set mouse=a
 
-" the_platinum_searcher
-if executable('pt')
-  let g:unite_source_grep_command = 'pt'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor'
-  let g:unite_source_grep_recursive_opt = ''
-  let g:unite_source_grep_encoding = 'utf-8'
-endif
+set cursorline
 
-nnoremap <C-l> :Unite -no-split -start-insert buffer file file_rec/git<CR>
-nnoremap <C-j> :Unite -start-insert file_mru<CR>
-nnoremap <C-r> :source ~/.config/nvim/init.vim<CR>
+let g:syntastic_quiet_messages = { "type": "style" }
 
-" autocmd! BufWritePost * Neomake
+let g:Gitv_OpenHorizontal = 1
+map ,gv :Gitv<CR>
 
-let g:EclimCompletionMethod = 'omnifunc'
+:set wildignore+=*/node_modules,*/output
 
-nmap <silent> <leader>d <Plug>DashSearch
-
-let gitlabHome=$GITLAB_HOME
-let g:fugitive_gitlab_domains = [gitlabHome]
-
-" This was a life saver:
-" https://wincent.com/blog/tweaking-command-t-and-vim-for-use-in-the-terminal-and-tmux
-if has('mouse')
-  set mouse=a
-  if &term =~ "xterm" || &term =~ "screen"
-    " for some reason, doing this directly with 'set ttymouse=xterm2'
-    " doesn't work -- 'set ttymouse?' returns xterm2 but the mouse
-    " makes tmux enter copy mode instead of selecting or scrolling
-    " inside Vim -- but luckily, setting it up from within autocmds
-    " works                   
-    autocmd VimEnter * set ttymouse=xterm2
-    autocmd FocusGained * set ttymouse=xterm2
-    autocmd BufEnter * set ttymouse=xterm2
-  endif
-endif
+nmap =j :%!python -m json.tool<CR>
 
 set clipboard=unnamed
+
+" Resize panes faster
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
