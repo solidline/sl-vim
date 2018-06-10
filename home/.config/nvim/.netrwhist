@@ -1,11 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/tsanden/repos/corvette-idp-graphql/app/src/main'
-let g:netrw_dirhist_2='/Users/tsanden/repos/corvette-idp-graphql/app/src/main/java'
-let g:netrw_dirhist_3='/Users/tsanden/repos/corvette-idp-graphql/app/src/main/java/com'
-let g:netrw_dirhist_4='/Users/tsanden/repos/corvette-idp-graphql/app/src/main/java/com/experian'
-let g:netrw_dirhist_5='/Users/tsanden/repos/corvette-idp-graphql/app/src/main/java/com/experian/eipi'
-let g:netrw_dirhist_6='/Users/tsanden/repos/corvette-idp-graphql/app/src/main/java/com/experian/eipi/idpgql'
-let g:netrw_dirhist_7='/Users/tsanden/repos/corvette-idp-graphql/app/src/main/java/com/experian/eipi/idpgql/graphql'
-let g:netrw_dirhist_8='/Users/tsanden/repos/corvette-idp-graphql/app/src/main/java/com/experian/eipi/idpgql/graphql/facade'
-let g:netrw_dirhist_9='/Users/tsanden/repos/corvette-idp-graphql'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/Users/tsanden/repos/corvette-idp-graphql/app/src/main/java/com/experian/eipi/idpgql/graphql/types/alertcard'
+let g:netrw_dirhist_2='/Users/tsanden/repos/corvette-idp-graphql'

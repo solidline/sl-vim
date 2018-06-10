@@ -1,68 +1,80 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Note: Skip initialization for vim-tiny or vim-small.
+if 0 | endif
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+if &compatible
+ set nocompatible
+endif
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Add the dein installation directory into runtimepath
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-Plugin 'chriskempson/base16-vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'int3/vim-extradite'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'tpope/vim-vinegar'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-markdown'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
-" Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-tbone'
-Plugin 'wincent/command-t'
-Plugin 'mileszs/ack.vim'
-" Plugin 'airblade/vim-gitgutter'
-Plugin 'bronson/vim-visual-star-search'
-" Plugin 'Valloric/YouCompleteMe'
-" Plugin 'scrooloose/syntastic'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'keith/swift.vim'
-Plugin 'rking/ag.vim'
-Plugin 'udalov/kotlin-vim'
-Plugin 'tfnico/vim-gradle'
-Plugin 'vimwiki/vimwiki'
-Plugin 'itchyny/calendar.vim'
-Plugin 'godlygeek/tabular'
-Plugin 'skywind3000/asyncrun.vim'
-Plugin 'metakirby5/codi.vim'
-Plugin 'elzr/vim-json'
-Plugin 'jparise/vim-graphql'
-Plugin 'gregsexton/gitv'
-Plugin 'leafgarland/typescript-vim'
-" Plugin 'akhaku/vim-java-unused-imports'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'nelstrom/vim-qargs'
-Plugin 'w0rp/ale'
+if dein#load_state('~/.cache/dein')
+ call dein#begin('~/.cache/dein')
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
+ call dein#add('~/.cache/dein')
+ call dein#add('Shougo/deoplete.nvim')
+
+ call dein#add('chriskempson/base16-vim')
+ call dein#add('tpope/vim-fugitive')
+ call dein#add('int3/vim-extradite')
+ call dein#add('tpope/vim-rhubarb')
+ call dein#add('tpope/vim-vinegar')
+ call dein#add('tpope/vim-abolish')
+ call dein#add('tpope/vim-unimpaired')
+ call dein#add('tpope/vim-markdown')
+ call dein#add('tpope/vim-surround')
+ call dein#add('tpope/vim-commentary')
+ call dein#add('tpope/vim-tbone')
+ call dein#add('wincent/command-t', {'build': 'cd ruby/command-t/ext/command-t && { make clean; ruby extconf.rb && make }'})
+
+ call dein#add('mileszs/ack.vim')
+ call dein#add('bronson/vim-visual-star-search')
+ call dein#add('vim-ruby/vim-ruby')
+ call dein#add('keith/swift.vim')
+ call dein#add('rking/ag.vim')
+ call dein#add('udalov/kotlin-vim')
+ call dein#add('tfnico/vim-gradle')
+ call dein#add('vimwiki/vimwiki')
+ call dein#add('itchyny/calendar.vim')
+ call dein#add('godlygeek/tabular')
+ call dein#add('skywind3000/asyncrun.vim')
+ call dein#add('metakirby5/codi.vim')
+ call dein#add('elzr/vim-json')
+ call dein#add('jparise/vim-graphql')
+ call dein#add('gregsexton/gitv')
+ call dein#add('leafgarland/typescript-vim')
+ call dein#add('pangloss/vim-javascript')
+ call dein#add('mxw/vim-jsx')
+ call dein#add('nelstrom/vim-qargs')
+ call dein#add('ludovicchabant/vim-gutentags')
+ call dein#add('w0rp/ale')
+
+call dein#add('artur-shaik/vim-javacomplete2')
+		call dein#config('artur-shaik/vim-javacomplete2', {
+		\ 'hook_source': 'autocmd FileType java
+		\                 setlocal omnifunc=javacomplete#Complete'
+		\ })
+
+ if !has('nvim')
+   call dein#add('roxma/nvim-yarp')
+   call dein#add('roxma/vim-hug-neovim-rpc')
+ endif
+
+ call dein#end()
+ call dein#save_state()
+
+endif
+
+filetype plugin indent on
+syntax enable
+
+call deoplete#enable()
+
+" javacomplete
+nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+
+imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
@@ -168,7 +180,7 @@ let g:syntastic_quiet_messages = { "type": "style" }
 let g:Gitv_OpenHorizontal = 1
 map ,gv :Gitv<CR>
 
-:set wildignore+=*/node_modules,*/output
+:set wildignore+=*/node_modules
 
 nmap =j :%!python -m json.tool<CR>
 
@@ -177,3 +189,49 @@ set clipboard=unnamed
 " Resize panes faster
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+
+" command-t
+
+let g:CommandTWildIgnore=&wildignore . ",*/bower_components,*.class,build,.DS_Store,out"
+
+nmap <silent> <Leader>t <Plug>(CommandT)
+nmap <silent> <Leader>b <Plug>(CommandTBuffer)
+nmap <silent> <Leader>j <Plug>(CommandTJump)
+
+" javacomplete
+
+  " let g:JavaComplete_LibsPath = './app/build/classes/java/main'
+
+  nmap <leader>jI <Plug>(JavaComplete-Imports-AddMissing)
+  nmap <leader>jR <Plug>(JavaComplete-Imports-RemoveUnused)
+  nmap <leader>ji <Plug>(JavaComplete-Imports-AddSmart)
+  nmap <leader>jii <Plug>(JavaComplete-Imports-Add)
+
+  imap <C-j>I <Plug>(JavaComplete-Imports-AddMissing)
+  imap <C-j>R <Plug>(JavaComplete-Imports-RemoveUnused)
+  imap <C-j>i <Plug>(JavaComplete-Imports-AddSmart)
+  imap <C-j>ii <Plug>(JavaComplete-Imports-Add)
+
+  nmap <leader>jM <Plug>(JavaComplete-Generate-AbstractMethods)
+
+  imap <C-j>jM <Plug>(JavaComplete-Generate-AbstractMethods)
+
+  nmap <leader>jA <Plug>(JavaComplete-Generate-Accessors)
+  nmap <leader>js <Plug>(JavaComplete-Generate-AccessorSetter)
+  nmap <leader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
+  nmap <leader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+  nmap <leader>jts <Plug>(JavaComplete-Generate-ToString)
+  nmap <leader>jeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
+  nmap <leader>jc <Plug>(JavaComplete-Generate-Constructor)
+  nmap <leader>jcc <Plug>(JavaComplete-Generate-DefaultConstructor)
+
+  imap <C-j>s <Plug>(JavaComplete-Generate-AccessorSetter)
+  imap <C-j>g <Plug>(JavaComplete-Generate-AccessorGetter)
+  imap <C-j>a <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+
+  vmap <leader>js <Plug>(JavaComplete-Generate-AccessorSetter)
+  vmap <leader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
+  vmap <leader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+
+  nmap <silent> <buffer> <leader>jn <Plug>(JavaComplete-Generate-NewClass)
+  nmap <silent> <buffer> <leader>jN <Plug>(JavaComplete-Generate-ClassInFile)
