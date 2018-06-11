@@ -6,12 +6,12 @@ if &compatible
 endif
 
 " Add the dein installation directory into runtimepath
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim
 
-if dein#load_state('~/.cache/dein')
- call dein#begin('~/.cache/dein')
+if dein#load_state('~/.config/nvim/dein')
+ call dein#begin('~/.config/nvim/dein')
 
- call dein#add('~/.cache/dein')
+ call dein#add('~/.config/nvim/dein')
  call dein#add('Shougo/deoplete.nvim')
 
  call dein#add('chriskempson/base16-vim')
