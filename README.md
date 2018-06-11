@@ -11,23 +11,11 @@ Vim configuration files.
 
     cd ~/.homsick/repos/sl-vim && git submodule update --init --recursive
 
-### Install youcompleteme
 
-    brew install cmake
+    homesick link sl-vim
 
-    cd ~/.homesick/repos/sl-vim/home/.vim/bundle/youcompleteme
 
-    ./install.sh
+## Update vim
 
-### Install command-t
-
-    cd ~/.homesick/repos/sl-vim/home/.vim/bundle/vim-command-t/ruby/command-t
-    rbenv global system
-
-    ruby extconf.rb
-    make
-
-### Finalize Installation
-
-    homesick symlink sl-vim
+    call dein#install()
 
