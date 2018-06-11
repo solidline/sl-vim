@@ -1,3 +1,4 @@
 home/.config/nvim/dein
 tags
 .DS_Store
+.netrwhist

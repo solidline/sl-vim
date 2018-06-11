@@ -1,4 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/Users/tsanden/repos/corvette-idp-graphql/app/src/main/java/com/experian/eipi/idpgql/graphql/types/alertcard'
-let g:netrw_dirhist_2='/Users/tsanden/repos/corvette-idp-graphql'
