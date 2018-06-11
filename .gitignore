@@ -1,6 +1,3 @@
-home/.vim/.netrwhist
-home/.vim/.netrwbook
-home/.vim/bundle
+home/.config/nvim/dein
 tags
-  
 .DS_Store
