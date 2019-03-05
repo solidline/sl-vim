@@ -25,7 +25,7 @@ if dein#load_state('/Users/tsanden/.config/nvim/dein')
  call dein#add('tpope/vim-surround')
  call dein#add('tpope/vim-commentary')
  call dein#add('tpope/vim-tbone')
- call dein#add('wincent/command-t', {'build': 'cd ruby/command-t/ext/command-t && { make clean; ruby extconf.rb && make }'})
+ call dein#add('junegunn/fzf.vim')
 
  call dein#add('mileszs/ack.vim')
  call dein#add('bronson/vim-visual-star-search')
