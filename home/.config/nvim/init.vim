@@ -5,74 +5,44 @@ if &compatible
  set nocompatible
 endif
 
-" Add the dein installation directory into runtimepath
-set runtimepath+=/Users/tsanden/.config/nvim/dein/repos/github.com/Shougo/dein.vim
+call plug#begin('~/.local/share/nvim/plugged')
 
-if dein#load_state('/Users/tsanden/.config/nvim/dein')
- call dein#begin('/Users/tsanden/.config/nvim/dein')
+Plug 'bronson/vim-visual-star-search' 
+Plug 'chriskempson/base16-vim'
+Plug 'elzr/vim-json' 
+Plug 'godlygeek/tabular' 
+Plug 'int3/vim-extradite' 
+Plug 'jparise/vim-graphql' 
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim' 
+Plug 'ludovicchabant/vim-gutentags' 
+Plug 'metakirby5/codi.vim' 
+Plug 'mxw/vim-jsx' 
+Plug 'nelstrom/vim-qargs' 
+Plug 'pangloss/vim-javascript' 
+Plug 'skywind3000/asyncrun.vim' 
+Plug 'tfnico/vim-gradle' 
+Plug 'tpope/vim-abolish' 
+Plug 'tpope/vim-commentary' 
+Plug 'tpope/vim-fugitive' 
+Plug 'tpope/vim-markdown' 
+Plug 'tpope/vim-rhubarb' 
+Plug 'tpope/vim-surround' 
+Plug 'tpope/vim-tbone' 
+Plug 'tpope/vim-unimpaired' 
+Plug 'tpope/vim-vinegar' 
+Plug 'udalov/kotlin-vim' 
+Plug 'w0rp/ale' 
 
- call dein#add('/Users/tsanden/.config/nvim/dein/repos/github.com/Shougo/dein.vim')
- call dein#add('Shougo/deoplete.nvim')
+" Initialize plugin system
+call plug#end()
 
- call dein#add('chriskempson/base16-vim')
- call dein#add('tpope/vim-fugitive')
- call dein#add('int3/vim-extradite')
- call dein#add('tpope/vim-rhubarb')
- call dein#add('tpope/vim-vinegar')
- call dein#add('tpope/vim-abolish')
- call dein#add('tpope/vim-unimpaired')
- call dein#add('tpope/vim-markdown')
- call dein#add('tpope/vim-surround')
- call dein#add('tpope/vim-commentary')
- call dein#add('tpope/vim-tbone')
- call dein#add('junegunn/fzf.vim')
-
- call dein#add('mileszs/ack.vim')
- call dein#add('bronson/vim-visual-star-search')
- call dein#add('vim-ruby/vim-ruby')
- call dein#add('keith/swift.vim')
- call dein#add('rking/ag.vim')
- call dein#add('udalov/kotlin-vim')
- call dein#add('tfnico/vim-gradle')
- call dein#add('vimwiki/vimwiki')
- call dein#add('itchyny/calendar.vim')
- call dein#add('godlygeek/tabular')
- call dein#add('skywind3000/asyncrun.vim')
- call dein#add('metakirby5/codi.vim')
- call dein#add('elzr/vim-json')
- call dein#add('jparise/vim-graphql')
- call dein#add('gregsexton/gitv')
- call dein#add('leafgarland/typescript-vim')
- call dein#add('pangloss/vim-javascript')
- call dein#add('mxw/vim-jsx')
- call dein#add('nelstrom/vim-qargs')
- call dein#add('ludovicchabant/vim-gutentags')
- call dein#add('w0rp/ale')
-
-call dein#add('artur-shaik/vim-javacomplete2')
-		call dein#config('artur-shaik/vim-javacomplete2', {
-		\ 'hook_source': 'autocmd FileType java
-		\                 setlocal omnifunc=javacomplete#Complete'
-		\ })
-
- if !has('nvim')
-   call dein#add('roxma/nvim-yarp')
-   call dein#add('roxma/vim-hug-neovim-rpc')
- endif
-
- call dein#end()
- call dein#save_state()
-
-endif
 
 filetype plugin indent on
 syntax enable
 
-call deoplete#enable()
-
 " javacomplete
 nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
-
 imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
 
 if filereadable(expand("~/.vimrc_background"))
@@ -80,7 +50,7 @@ if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif
 
-filetype plugin indent on    " required
+filetype plugin indent on " required
 
 map ,s :Gstatus<CR>
 map ,e :w<CR>
@@ -96,17 +66,19 @@ set showbreak=↪
 nnoremap <D-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
 " keybindings
-  " Press i to enter insert mode, and kj to exit.
-  :inoremap jk <Esc>
-  :inoremap kj <Esc>
+"
+" Press i to enter insert mode, and kj to exit.
+:inoremap jk <Esc>
+:inoremap kj <Esc>
 
-  " Disable paste mode when leaving insert
-   au InsertLeave * set nopaste
+" Disable paste mode when leaving insert
+ au InsertLeave * set nopaste
 
 " no swap file
-  set noswapfile
-  set nobackup
-  set nowb
+
+set noswapfile
+set nobackup
+set nowb
 
 scriptencoding utf-8
 
@@ -126,7 +98,8 @@ scriptencoding utf-8
   set statusline+=%f\ " file name
   set statusline+=[
   set statusline+=%{strlen(&ft)?&ft:'none'}, " filetype
-  set statusline+=%{&fileformat}] " file format
+  set statusline+=%{&fileformat} " file format
+  set statusline+=%{FugitiveStatusline()} " file format
   set statusline+=%h%1*%m%r%w%0* " flag
   set statusline+=%= " right align
   set statusline+=%-14.(%l,%c%V%)\ %<%P " offset
