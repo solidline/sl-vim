@@ -1,210 +1,59 @@
-" Note: Skip initialization for vim-tiny or vim-small.
-if 0 | endif
+set nocompatible          " disable compatibility to old-time vi
+set showmatch             " show matching brackets.
+set ignorecase            " case insensitive matching
+set mouse=v               " middle-click paste with mouse
+set hlsearch              " highlight search results
+set tabstop=4             " number of columns occupied by a tab character
+set softtabstop=4         " see multiple spaces as tabstops so <BS> does the right thing
+set expandtab             " converts tabs to white space
+set shiftwidth=4          " width for autoindents
+set autoindent            " indent a new line the same amount as the line just typed
+set number                " add line numbers
+set wildmode=longest,list " get bash-like tab completions
+set cc=80                 " set an 80 column border for good coding style
+set mouse=a               " enable mouse mode
+set clipboard+=unnamed
+let mapleader = ","       " change <leader>
 
-if &compatible
- set nocompatible
-endif
+" start interactive easyalign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign) 
+nmap ga <Plug>(EasyAlign)
 
-call plug#begin('~/.local/share/nvim/plugged')
+" nerdtree
+nnoremap <leader>n :NERDTreeFocus<CR> " nerdtree
+nnoremap <C-n> :NERDTree<CR>          " nerdtree
+nnoremap <C-t> :NERDTreeToggle<CR>    " nerdtree
+nnoremap <C-f> :NERDTreeFind<CR>      " nerdtree
 
-Plug 'bronson/vim-visual-star-search' 
-Plug 'chriskempson/base16-vim'
-Plug 'elzr/vim-json' 
-Plug 'godlygeek/tabular' 
-Plug 'int3/vim-extradite' 
-Plug 'jparise/vim-graphql' 
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim' 
-Plug 'ludovicchabant/vim-gutentags' 
-Plug 'metakirby5/codi.vim' 
-Plug 'mxw/vim-jsx' 
-Plug 'nelstrom/vim-qargs' 
-Plug 'pangloss/vim-javascript' 
-Plug 'skywind3000/asyncrun.vim' 
-Plug 'tfnico/vim-gradle' 
-Plug 'tpope/vim-abolish' 
-Plug 'tpope/vim-commentary' 
-Plug 'tpope/vim-fugitive' 
-Plug 'tpope/vim-markdown' 
-Plug 'tpope/vim-rhubarb' 
-Plug 'tpope/vim-surround' 
-Plug 'tpope/vim-tbone' 
-Plug 'tpope/vim-unimpaired' 
-Plug 'tpope/vim-vinegar' 
-Plug 'udalov/kotlin-vim' 
-Plug 'w0rp/ale' 
+filetype plugin indent on " allows auto-indenting depending on file type
+syntax on                 " syntax highlighting
 
-" Initialize plugin system
+call plug#begin(stdpath('data') . '/plugged')
+
+Plug 'junegunn/vim-easy-align'
+Plug 'scrooloose/nerdtree'
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'kabouzeid/nvim-lspinstall'
+Plug 'voldikss/vim-floaterm'
+Plug 'tpope/vim-unimpaired'
+
 call plug#end()
 
-
-filetype plugin indent on
-syntax enable
-
-" javacomplete
-nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
-imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
-
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
-
-filetype plugin indent on " required
-
-map ,s :Gstatus<CR>
-map ,e :w<CR>
-
-" Toggle folds.
-nnoremap <Space> za
- 
-" Provide a character to show when line wrap happens.
-set showbreak=↪  
-
-" Apple-* Highlight all occurrences of current word (like '*' but without moving)
-" http://vim.wikia.com/wiki/Highlight_all_search_pattern_matches
-nnoremap <D-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
-
-" keybindings
-"
-" Press i to enter insert mode, and kj to exit.
-:inoremap jk <Esc>
-:inoremap kj <Esc>
-
-" Disable paste mode when leaving insert
- au InsertLeave * set nopaste
-
-" no swap file
-
-set noswapfile
-set nobackup
-set nowb
-
-scriptencoding utf-8
-
- " Change <Leader>
-  let mapleader = ","
-
-" When scrolling off-screen do so 3 lines at a time, not 1
-  set scrolloff=3
-
-  " enable line numbers 
-  set number
-  setlocal numberwidth=5
-
-  " Nice statusbar
-  set laststatus=2
-  set statusline=\ "
-  set statusline+=%f\ " file name
-  set statusline+=[
-  set statusline+=%{strlen(&ft)?&ft:'none'}, " filetype
-  set statusline+=%{&fileformat} " file format
-  set statusline+=%{FugitiveStatusline()} " file format
-  set statusline+=%h%1*%m%r%w%0* " flag
-  set statusline+=%= " right align
-  set statusline+=%-14.(%l,%c%V%)\ %<%P " offset
-
-  " can has foldin plz?
-  set foldenable
-  set foldmethod=syntax
-  set foldlevel=999 " make it really high, so they're not displayed by default
-
-  " highlight search
-  set hlsearch
-
-  set autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab " set the default
-
-" better buffer management
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [B :bfirst<CR>
-nnoremap <silent> ]B :blast<CR>
+lua << EOF
+vim.lsp.set_log_level("debug")
+EOF
 
 
-map <Leader>t4 :set tabstop=4 softtabstop=4 shiftwidth=4 expandtab<CR>
-map <Leader>t2 :set tabstop=2 softtabstop=2 shiftwidth=2 expandtab<CR>
+lua << EOF
 
-nmap <Leader>st4 :set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab<CR>
-nmap <Leader>st2 :set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab<CR>
+require'lspconfig'.graphql.setup{}
 
-" Select text that has just been pasted.
-nnoremap gp `[v`]
+require'lspconfig'.java_language_server.setup { 
+    cmd = {
+        "/Users/tsanden/.local/share/java-language-server/dist/lang_server_mac.sh" 
+    }
+}
 
-map ,gs :Gdiff<CR>
-map ,gw :Gwrite<CR>
-map ,bo :BufOnly<CR>
+EOF
 
-nmap [h <Plug>GitGutterPrevHunk
-nmap ]h <Plug>GitGutterNextHunk
-
-let g:github_enterprise_urls = ['https://git.gbl.experiancs.com']
-
-
-" Send more characters for redraws
-set ttyfast
-
-" Enable mouse use in all modes
-set mouse=a
-
-set cursorline
-
-let g:syntastic_quiet_messages = { "type": "style" }
-
-let g:Gitv_OpenHorizontal = 1
-map ,gv :Gitv<CR>
-
-:set wildignore+=*/node_modules
-
-nmap =j :%!python -m json.tool<CR>
-
-set clipboard=unnamed
-
-" Resize panes faster
-nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
-
-" command-t
-
-let g:CommandTWildIgnore=&wildignore . ",*/bower_components,*.class,build,.DS_Store,out"
-
-nmap <silent> <Leader>t <Plug>(CommandT)
-nmap <silent> <Leader>b <Plug>(CommandTBuffer)
-nmap <silent> <Leader>j <Plug>(CommandTJump)
-
-" javacomplete
-
-  " let g:JavaComplete_LibsPath = './app/build/classes/java/main'
-
-  nmap <leader>jI <Plug>(JavaComplete-Imports-AddMissing)
-  nmap <leader>jR <Plug>(JavaComplete-Imports-RemoveUnused)
-  nmap <leader>ji <Plug>(JavaComplete-Imports-AddSmart)
-  nmap <leader>jii <Plug>(JavaComplete-Imports-Add)
-
-  imap <C-j>I <Plug>(JavaComplete-Imports-AddMissing)
-  imap <C-j>R <Plug>(JavaComplete-Imports-RemoveUnused)
-  imap <C-j>i <Plug>(JavaComplete-Imports-AddSmart)
-  imap <C-j>ii <Plug>(JavaComplete-Imports-Add)
-
-  nmap <leader>jM <Plug>(JavaComplete-Generate-AbstractMethods)
-
-  imap <C-j>jM <Plug>(JavaComplete-Generate-AbstractMethods)
-
-  nmap <leader>jA <Plug>(JavaComplete-Generate-Accessors)
-  nmap <leader>js <Plug>(JavaComplete-Generate-AccessorSetter)
-  nmap <leader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
-  nmap <leader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-  nmap <leader>jts <Plug>(JavaComplete-Generate-ToString)
-  nmap <leader>jeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
-  nmap <leader>jc <Plug>(JavaComplete-Generate-Constructor)
-  nmap <leader>jcc <Plug>(JavaComplete-Generate-DefaultConstructor)
-
-  imap <C-j>s <Plug>(JavaComplete-Generate-AccessorSetter)
-  imap <C-j>g <Plug>(JavaComplete-Generate-AccessorGetter)
-  imap <C-j>a <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-
-  vmap <leader>js <Plug>(JavaComplete-Generate-AccessorSetter)
-  vmap <leader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
-  vmap <leader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-
-  nmap <silent> <buffer> <leader>jn <Plug>(JavaComplete-Generate-NewClass)
-  nmap <silent> <buffer> <leader>jN <Plug>(JavaComplete-Generate-ClassInFile)
