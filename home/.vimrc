@@ -1,1 +1,0 @@
-/Users/tsanden/.config/nvim/init.vim
